@@ -1,269 +1,1001 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-    content="width=device-width, initial-scale=1.0">
-    <title>Title of the document</title>
-    <link rel="stylesheet" href="style.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-</head>
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Iheb Trabelsi — Premium Portfolio</title>
 
-<body>
-   <header class="header">
-   <a href="#home"class="logo">Iheb
-    <span>Trabelsi</span>
-    <i class='bx bx-menu' id="menu-icon"></i>
-    </a>
-    <nav class="navbar">
-    <a href="#home"class="active">home</a>
-    <a href="#Education">Education</a>
-    <a href="#Services">Services</a>
-    <a href="#testimonials">testimonials</a>
-    <a href="#contact">contact</a>
-</nav>
-</header>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
 
-<section class="home"id="home">
-    <div class="home-content">
-        <h1>Hello, It's <span>Iheb</span></h1>
-        <h3 class="text-animation">I'm a <span></span></h3>
-        <p>I design vibrant, intuitive websites that bring concepts to life.
-             With a solid background in both front-end and back-end programming,
-              I ensure that websites are not only visually appealing but also highly functional.
-               My passion for design and technology drives me to stay current with the 
-               latest trends and industry best practices. My objective is to create user-friendly,
-                scalable, and effective websites. Let's collaborate to bring your 
-                digital vision to fruition.
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              dark: "#050505",
+              surface: "#0f0f0f",
+              accent: {
+                primary: "#6366f1",
+                secondary: "#a855f7",
+                tertiary: "#3b82f6",
+              },
+              muted: "#94a3b8",
+              "muted-darker": "#475569",
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              display: ["Plus Jakarta Sans", "sans-serif"],
+              mono: ["JetBrains Mono", "monospace"],
+            },
+            animation: {
+              "pulse-slow": "pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+              float: "float 6s ease-in-out infinite",
+            },
+            keyframes: {
+              float: {
+                "0%, 100%": { transform: "translateY(0) rotate(0)" },
+                "50%": { transform: "translateY(-20px) rotate(1deg)" },
+              },
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      /* --- CUSTOM STYLES --- */
+
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #050505;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #1f1f1f;
+        border-radius: 10px;
+        border: 2px solid #050505;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #2d2d2d;
+      }
+
+      ::selection {
+        background: rgba(99, 102, 241, 0.3);
+        color: #fff;
+      }
+
+      .glass {
+        background: rgba(15, 15, 15, 0.7);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      .glass-card {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.03),
+          rgba(255, 255, 255, 0.01)
+        );
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      }
+
+      .glass-card:hover {
+        border-color: rgba(99, 102, 241, 0.3);
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.05),
+          rgba(255, 255, 255, 0.02)
+        );
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      }
+
+      .text-gradient {
+        background: linear-gradient(to right, #fff, #94a3b8);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .accent-gradient {
+        background: linear-gradient(135deg, #6366f1, #a855f7);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(120px);
+        z-index: 0;
+        pointer-events: none;
+        opacity: 0.15;
+      }
+
+      .magnetic {
+        transition: transform 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+      }
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .timeline-line {
+        background: linear-gradient(to bottom, #6366f1, transparent);
+      }
+
+      .term-key {
+        color: #f472b6;
+      }
+      .term-str {
+        color: #60a5fa;
+      }
+      .term-fn {
+        color: #a78bfa;
+      }
+      .term-comment {
+        color: #64748b;
+      }
+    </style>
+  </head>
+  <body class="bg-dark text-white font-sans antialiased overflow-x-hidden">
+    <!-- Background Orbs -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none">
+      <div
+        class="orb w-[500px] h-[500px] -top-20 -left-20 bg-accent-primary"
+      ></div>
+      <div
+        class="orb w-[400px] h-[400px] top-1/2 -right-20 bg-accent-secondary"
+      ></div>
+      <div
+        class="orb w-[300px] h-[300px] -bottom-20 left-1/3 bg-accent-tertiary"
+      ></div>
+    </div>
+
+    <!-- ===== HEADER ===== -->
+    <header
+      id="header"
+      class="fixed top-0 left-0 w-full z-50 transition-all duration-300 h-20"
+    >
+      <div
+        class="max-w-7xl mx-auto px-6 h-full flex items-center justify-between"
+      >
+        <a
+          href="#home"
+          class="group flex items-center gap-2 font-display font-bold text-xl tracking-tight"
+        >
+          <span
+            class="w-2 h-2 rounded-full bg-accent-primary group-hover:scale-150 transition-transform duration-300 shadow-[0_0_12px_rgba(99,102,241,0.8)]"
+          ></span>
+          iheb.trabelsi
+        </a>
+
+        <nav
+          id="navbar"
+          class="hidden md:flex items-center gap-8 font-mono text-sm uppercase tracking-widest text-muted"
+        >
+          <a
+            href="#home"
+            class="hover:text-white transition-colors duration-300 text-white"
+            >Home</a
+          >
+          <a
+            href="#about"
+            class="hover:text-white transition-colors duration-300"
+            >About</a
+          >
+          <a
+            href="#experience"
+            class="hover:text-white transition-colors duration-300"
+            >Experience</a
+          >
+          <a
+            href="#projects"
+            class="hover:text-white transition-colors duration-300"
+            >Projects</a
+          >
+          <a
+            href="#contact"
+            class="hover:text-white transition-colors duration-300"
+            >Contact</a
+          >
+        </nav>
+
+        <button id="menu-toggle" class="md:hidden text-2xl text-white">
+          <i class="fa-solid fa-bars-staggered"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- ===== MAIN ===== -->
+    <main class="relative z-10">
+      <!-- HERO -->
+      <section
+        id="home"
+        class="min-h-screen flex items-center pt-20 px-6 max-w-7xl mx-auto"
+      >
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div class="lg:col-span-7 reveal">
+            <div
+              class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-accent-primary/20 bg-accent-primary/5 text-accent-primary text-xs font-mono mb-6 uppercase tracking-widest"
+            >
+              <span class="relative flex h-2 w-2">
+                <span
+                  class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-primary opacity-75"
+                ></span>
+                <span
+                  class="relative inline-flex rounded-full h-2 w-2 bg-accent-primary"
+                ></span>
+              </span>
+              Available for Work
+            </div>
+
+            <div class="mb-2 font-mono text-accent-tertiary text-lg">
+              <span id="typewriter"></span><span class="animate-pulse">|</span>
+            </div>
+
+            <h1
+              class="font-display text-6xl md:text-8xl font-extrabold mb-8 leading-[1.1] text-gradient"
+            >
+              Iheb <br />
+              <span class="accent-gradient">Trabelsi.</span>
+            </h1>
+
+            <p
+              class="text-muted text-lg md:text-xl leading-relaxed max-w-xl mb-10"
+            >
+              Full-stack developer in Tunisia building responsive web and mobile
+              products. I turn fuzzy requirements into polished interfaces
+              people actually enjoy using.
+            </p>
+
+            <div class="flex flex-wrap gap-4 mb-12">
+              <a
+                href="#projects"
+                class="magnetic group relative px-8 py-4 bg-white text-dark font-semibold rounded-full overflow-hidden transition-all duration-300 hover:pr-12"
+              >
+                <span class="relative z-10">View Work</span>
+                <i
+                  class="fa-solid fa-arrow-right absolute right-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all"
+                ></i>
+              </a>
+              <a
+                href="Iheb_Trabelsi_CV_ATS.pdf"
+                download
+                class="magnetic px-8 py-4 glass text-white font-semibold rounded-full hover:bg-white/10 transition-all border border-white/10"
+              >
+                Download CV
+                <i class="fa-solid fa-download ml-2 text-sm opacity-60"></i>
+              </a>
+            </div>
+
+            <div class="flex gap-6 text-2xl text-muted-darker">
+              <a
+                href="#"
+                target="_blank"
+                class="hover:text-accent-primary transition-colors duration-300"
+                ><i class="fa-brands fa-linkedin"></i
+              ></a>
+              <a
+                href="#"
+                target="_blank"
+                class="hover:text-white transition-colors duration-300"
+                ><i class="fa-brands fa-github"></i
+              ></a>
+              <a
+                href="#"
+                target="_blank"
+                class="hover:text-accent-secondary transition-colors duration-300"
+                ><i class="fa-brands fa-behance"></i
+              ></a>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 relative hidden lg:block reveal">
+            <div class="animate-float">
+              <div
+                class="glass-card rounded-2xl overflow-hidden border border-white/10 shadow-2xl"
+              >
+                <div
+                  class="flex items-center gap-2 px-4 py-3 border-b border-white/5 bg-white/5"
+                >
+                  <div class="w-3 h-3 rounded-full bg-red-500/50"></div>
+                  <div class="w-3 h-3 rounded-full bg-amber-500/50"></div>
+                  <div class="w-3 h-3 rounded-full bg-emerald-500/50"></div>
+                  <div
+                    class="ml-4 text-[10px] font-mono text-muted uppercase tracking-tighter"
+                  >
+                    Developer.js — Visual Studio Code
+                  </div>
+                </div>
+                <div
+                  class="p-6 font-mono text-sm leading-relaxed"
+                  id="terminal-body"
+                >
+                  <span
+                    class="w-2 h-4 inline-block align-middle bg-accent-tertiary ml-1 animate-pulse"
+                  ></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-muted-darker"
+        >
+          <span class="text-[10px] uppercase tracking-widest font-mono"
+            >Scroll</span
+          >
+          <div
+            class="w-px h-12 bg-gradient-to-b from-accent-primary/50 to-transparent"
+          ></div>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section id="about" class="py-32 px-6 max-w-7xl mx-auto">
+        <div class="mb-16 reveal">
+          <span
+            class="font-mono text-accent-primary text-sm tracking-[0.3em] uppercase mb-4 block"
+            >whoami</span
+          >
+          <h2 class="font-display text-4xl md:text-6xl font-bold text-gradient">
+            About Me.
+          </h2>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
+          <div class="reveal">
+            <p class="text-muted text-lg leading-relaxed mb-6">
+              I'm a full-stack developer based in Nabeul, Tunisia, working
+              across
+              <span class="text-white font-medium"
+                >React, React Native, Node.js, Express</span
+              >
+              and both
+              <span class="text-white font-medium">MongoDB and PostgreSQL</span
+              >.
+            </p>
+            <p class="text-muted text-lg leading-relaxed mb-10">
+              I've spent the past couple of years building real products — from
+              a cross-platform fitness app to an e-commerce platform for PC
+              components. I care about clean, scalable code and interfaces that
+              don't make people think twice.
+            </p>
+            <div class="flex flex-wrap gap-3">
+              <span
+                class="px-4 py-2 rounded-lg bg-surface border border-white/5 text-muted text-sm font-mono hover:border-accent-primary/30 transition-colors"
+                >JavaScript</span
+              >
+              <span
+                class="px-4 py-2 rounded-lg bg-surface border border-white/5 text-muted text-sm font-mono hover:border-accent-primary/30 transition-colors"
+                >TypeScript</span
+              >
+              <span
+                class="px-4 py-2 rounded-lg bg-surface border border-white/5 text-muted text-sm font-mono hover:border-accent-primary/30 transition-colors"
+                >React</span
+              >
+              <span
+                class="px-4 py-2 rounded-lg bg-surface border border-white/5 text-muted text-sm font-mono hover:border-accent-primary/30 transition-colors"
+                >Node.js</span
+              >
+              <span
+                class="px-4 py-2 rounded-lg bg-surface border border-white/5 text-muted text-sm font-mono hover:border-accent-primary/30 transition-colors"
+                >Express</span
+              >
+              <span
+                class="px-4 py-2 rounded-lg bg-surface border border-white/5 text-muted text-sm font-mono hover:border-accent-primary/30 transition-colors"
+                >PostgreSQL</span
+              >
+              <span
+                class="px-4 py-2 rounded-lg bg-surface border border-white/5 text-muted text-sm font-mono hover:border-accent-primary/30 transition-colors"
+                >MongoDB</span
+              >
+              <span
+                class="px-4 py-2 rounded-lg bg-surface border border-white/5 text-muted text-sm font-mono hover:border-accent-primary/30 transition-colors"
+                >REST APIs</span
+              >
+              <span
+                class="px-4 py-2 rounded-lg bg-surface border border-white/5 text-muted text-sm font-mono hover:border-accent-primary/30 transition-colors"
+                >Git</span
+              >
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 reveal">
+            <div class="glass-card p-8 rounded-2xl text-center">
+              <div
+                class="counter-num font-display text-5xl font-bold accent-gradient mb-2"
+                data-target="2"
+                data-suffix="+"
+              >
+                0
+              </div>
+              <div
+                class="text-muted text-xs font-mono uppercase tracking-widest"
+              >
+                Years Exp.
+              </div>
+            </div>
+            <div class="glass-card p-8 rounded-2xl text-center">
+              <div
+                class="counter-num font-display text-5xl font-bold accent-gradient mb-2"
+                data-target="5"
+                data-suffix="+"
+              >
+                0
+              </div>
+              <div
+                class="text-muted text-xs font-mono uppercase tracking-widest"
+              >
+                Projects
+              </div>
+            </div>
+            <div class="glass-card p-8 rounded-2xl text-center">
+              <div
+                class="counter-num font-display text-5xl font-bold accent-gradient mb-2"
+                data-target="12"
+                data-suffix="+"
+              >
+                0
+              </div>
+              <div
+                class="text-muted text-xs font-mono uppercase tracking-widest"
+              >
+                Technologies
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- EXPERIENCE -->
+      <section id="experience" class="py-32 px-6 max-w-7xl mx-auto">
+        <div class="mb-16 reveal">
+          <span
+            class="font-mono text-accent-tertiary text-sm tracking-[0.3em] uppercase mb-4 block"
+            >cat experience.log</span
+          >
+          <h2 class="font-display text-4xl md:text-6xl font-bold text-gradient">
+            Where I've Worked.
+          </h2>
+        </div>
+        <div class="relative space-y-12">
+          <div
+            class="absolute left-[7px] top-4 bottom-4 w-px timeline-line opacity-20"
+          ></div>
+          <div class="relative pl-10 reveal">
+            <div
+              class="absolute left-0 top-2 w-4 h-4 rounded-full bg-dark border-2 border-accent-primary shadow-[0_0_10px_rgba(99,102,241,0.5)]"
+            ></div>
+            <div
+              class="mb-1 text-accent-primary font-mono text-xs uppercase tracking-widest"
+            >
+              08/2023 — Current
+            </div>
+            <h3 class="font-display text-2xl font-bold text-white mb-2">
+              Full Stack Developer
+            </h3>
+            <div class="text-muted-darker font-mono text-sm mb-4">
+              Freelance / Personal Projects · Tunisia
+            </div>
+            <p class="text-muted text-base max-w-2xl leading-relaxed">
+              Building responsive web and mobile apps with React, React Native,
+              Node.js, Express and PostgreSQL — REST APIs, auth, CRUD, and
+              everything in between.
+            </p>
+          </div>
+          <div class="relative pl-10 reveal">
+            <div
+              class="absolute left-0 top-2 w-4 h-4 rounded-full bg-dark border-2 border-white/20"
+            ></div>
+            <div
+              class="mb-1 text-muted-darker font-mono text-xs uppercase tracking-widest"
+            >
+              02/2026 — 07/2026
+            </div>
+            <h3 class="font-display text-2xl font-bold text-white mb-2">
+              Mobile Developer Intern
+            </h3>
+            <div class="text-muted-darker font-mono text-sm mb-4">
+              DEFENDR · Tunisia
+            </div>
+            <p class="text-muted text-base max-w-2xl leading-relaxed">
+              Built GymBro end to end — auth, workout plans, nutrition tracking,
+              and BMI/BMR calculators in React Native.
+            </p>
+          </div>
+          <div class="relative pl-10 reveal">
+            <div
+              class="absolute left-0 top-2 w-4 h-4 rounded-full bg-dark border-2 border-white/20"
+            ></div>
+            <div
+              class="mb-1 text-muted-darker font-mono text-xs uppercase tracking-widest"
+            >
+              02/2026 — 07/2026
+            </div>
+            <h3 class="font-display text-2xl font-bold text-white mb-2">
+              Web Developer Intern
+            </h3>
+            <div class="text-muted-darker font-mono text-sm mb-4">
+              Unitech · Tunisia
+            </div>
+            <p class="text-muted text-base max-w-2xl leading-relaxed">
+              Developed a responsive e-commerce site for PC components,
+              improving usability and overall UX.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROJECTS -->
+      <section id="projects" class="py-32 px-6 max-w-7xl mx-auto">
+        <div class="mb-16 reveal">
+          <span
+            class="font-mono text-accent-secondary text-sm tracking-[0.3em] uppercase mb-4 block"
+            >ls ./projects</span
+          >
+          <h2 class="font-display text-4xl md:text-6xl font-bold text-gradient">
+            Selected Work.
+          </h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="glass-card p-8 rounded-3xl flex flex-col reveal group">
+            <div class="mb-8 flex justify-between items-start">
+              <span class="font-mono text-muted-darker text-sm">01</span>
+              <div
+                class="w-10 h-10 rounded-full bg-accent-primary/10 flex items-center justify-center text-accent-primary group-hover:bg-accent-primary group-hover:text-white transition-all duration-500"
+              >
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </div>
+            </div>
+            <h3
+              class="font-display text-2xl font-bold mb-4 group-hover:text-accent-primary transition-colors"
+            >
+              GymBro
+            </h3>
+            <p class="text-muted text-sm leading-relaxed mb-8 flex-grow">
+              A cross-platform fitness app with authentication, workout plans,
+              nutrition tracking and BMI/BMR calculators.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="px-3 py-1 rounded-full bg-white/5 text-[10px] font-mono text-muted uppercase"
+                >React Native</span
+              >
+              <span
+                class="px-3 py-1 rounded-full bg-white/5 text-[10px] font-mono text-muted uppercase"
+                >Node.js</span
+              >
+              <span
+                class="px-3 py-1 rounded-full bg-white/5 text-[10px] font-mono text-muted uppercase"
+                >MongoDB</span
+              >
+            </div>
+          </div>
+          <div class="glass-card p-8 rounded-3xl flex flex-col reveal group">
+            <div class="mb-8 flex justify-between items-start">
+              <span class="font-mono text-muted-darker text-sm">02</span>
+              <div
+                class="w-10 h-10 rounded-full bg-accent-tertiary/10 flex items-center justify-center text-accent-tertiary group-hover:bg-accent-tertiary group-hover:text-white transition-all duration-500"
+              >
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </div>
+            </div>
+            <h3
+              class="font-display text-2xl font-bold mb-4 group-hover:text-accent-tertiary transition-colors"
+            >
+              PC Components E-Commerce
+            </h3>
+            <p class="text-muted text-sm leading-relaxed mb-8 flex-grow">
+              A responsive e-commerce platform for PC parts, with
+              authentication, product management and REST APIs.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="px-3 py-1 rounded-full bg-white/5 text-[10px] font-mono text-muted uppercase"
+                >Angular</span
+              >
+              <span
+                class="px-3 py-1 rounded-full bg-white/5 text-[10px] font-mono text-muted uppercase"
+                >PostgreSQL</span
+              >
+            </div>
+          </div>
+          <div class="glass-card p-8 rounded-3xl flex flex-col reveal group">
+            <div class="mb-8 flex justify-between items-start">
+              <span class="font-mono text-muted-darker text-sm">03</span>
+              <div
+                class="w-10 h-10 rounded-full bg-accent-secondary/10 flex items-center justify-center text-accent-secondary group-hover:bg-accent-secondary group-hover:text-white transition-all duration-500"
+              >
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </div>
+            </div>
+            <h3
+              class="font-display text-2xl font-bold mb-4 group-hover:text-accent-secondary transition-colors"
+            >
+              Freelance builds
+            </h3>
+            <p class="text-muted text-sm leading-relaxed mb-8 flex-grow">
+              An ongoing run of client and personal projects — RESTful APIs,
+              auth, and CRUD flows shipped across web and mobile.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="px-3 py-1 rounded-full bg-white/5 text-[10px] font-mono text-muted uppercase"
+                >React</span
+              >
+              <span
+                class="px-3 py-1 rounded-full bg-white/5 text-[10px] font-mono text-muted uppercase"
+                >Express</span
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact" class="py-32 px-6 max-w-7xl mx-auto">
+        <div class="mb-16 reveal">
+          <span
+            class="font-mono text-accent-primary text-sm tracking-[0.3em] uppercase mb-4 block"
+            >./contact --me</span
+          >
+          <h2 class="font-display text-4xl md:text-6xl font-bold text-gradient">
+            Let's Talk.
+          </h2>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
+          <div class="reveal">
+            <p class="text-muted text-lg mb-12">
+              Have a project in mind, or just want to say hi? My inbox is open.
+              I'm always interested in hearing about new projects and
+              opportunities.
+            </p>
+            <div class="space-y-8">
+              <div class="flex items-center gap-6 group">
+                <div
+                  class="w-14 h-14 rounded-2xl bg-surface border border-white/5 flex items-center justify-center text-accent-primary text-xl group-hover:bg-accent-primary group-hover:text-white transition-all duration-500"
+                >
+                  <i class="fa-solid fa-envelope"></i>
+                </div>
+                <div>
+                  <div
+                    class="text-[10px] font-mono text-muted-darker uppercase tracking-widest mb-1"
+                  >
+                    Email Me
+                  </div>
+                  <a
+                    href="mailto:iheb.trabelsi.gd@gmail.com"
+                    class="text-lg font-medium hover:text-accent-primary transition-colors"
+                    >iheb.trabelsi.gd@gmail.com</a
+                  >
+                </div>
+              </div>
+              <div class="flex items-center gap-6 group">
+                <div
+                  class="w-14 h-14 rounded-2xl bg-surface border border-white/5 flex items-center justify-center text-accent-tertiary text-xl group-hover:bg-accent-tertiary group-hover:text-white transition-all duration-500"
+                >
+                  <i class="fa-solid fa-phone"></i>
+                </div>
+                <div>
+                  <div
+                    class="text-[10px] font-mono text-muted-darker uppercase tracking-widest mb-1"
+                  >
+                    Call Me
+                  </div>
+                  <a
+                    href="tel:+21624871233"
+                    class="text-lg font-medium hover:text-accent-tertiary transition-colors"
+                    >+216 24 871 233</a
+                  >
+                </div>
+              </div>
+              <div class="flex items-center gap-6 group">
+                <div
+                  class="w-14 h-14 rounded-2xl bg-surface border border-white/5 flex items-center justify-center text-accent-secondary text-xl group-hover:bg-accent-secondary group-hover:text-white transition-all duration-500"
+                >
+                  <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <div>
+                  <div
+                    class="text-[10px] font-mono text-muted-darker uppercase tracking-widest mb-1"
+                  >
+                    Location
+                  </div>
+                  <span class="text-lg font-medium">Nabeul, Tunisia</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="reveal">
+            <form
+              onsubmit="return false;"
+              class="glass-card p-10 rounded-3xl space-y-6"
+            >
+              <div class="space-y-2">
+                <label
+                  class="text-[10px] font-mono text-muted-darker uppercase tracking-widest ml-1"
+                  >Your Name</label
+                >
+                <input
+                  type="text"
+                  placeholder="John Doe"
+                  class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 outline-none focus:border-accent-primary/50 transition-colors text-white"
+                />
+              </div>
+              <div class="space-y-2">
+                <label
+                  class="text-[10px] font-mono text-muted-darker uppercase tracking-widest ml-1"
+                  >Email Address</label
+                >
+                <input
+                  type="email"
+                  placeholder="john@example.com"
+                  class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 outline-none focus:border-accent-primary/50 transition-colors text-white"
+                />
+              </div>
+              <div class="space-y-2">
+                <label
+                  class="text-[10px] font-mono text-muted-darker uppercase tracking-widest ml-1"
+                  >Your Message</label
+                >
+                <textarea
+                  rows="4"
+                  placeholder="Tell me about your project..."
+                  class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 outline-none focus:border-accent-primary/50 transition-colors text-white resize-none"
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                class="w-full magnetic bg-white text-dark font-bold py-5 rounded-xl hover:bg-accent-primary hover:text-white transition-all duration-500 shadow-xl shadow-accent-primary/10"
+              >
+                Send Message <i class="fa-solid fa-paper-plane ml-2"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer
+      class="py-20 px-6 border-t border-white/5 text-center relative z-10 overflow-hidden"
+    >
+      <div class="max-w-7xl mx-auto">
+        <div class="flex justify-center gap-8 mb-12 text-2xl text-muted-darker">
+          <a
+            href="#"
+            target="_blank"
+            class="hover:text-accent-primary transition-all hover:scale-110"
+            ><i class="fa-brands fa-linkedin"></i
+          ></a>
+          <a
+            href="#"
+            target="_blank"
+            class="hover:text-white transition-all hover:scale-110"
+            ><i class="fa-brands fa-github"></i
+          ></a>
+          <a
+            href="#"
+            target="_blank"
+            class="hover:text-accent-secondary transition-all hover:scale-110"
+            ><i class="fa-brands fa-behance"></i
+          ></a>
+        </div>
+        <p class="font-mono text-muted-darker text-sm tracking-tighter">
+          &copy; 2026 Iheb Trabelsi. Redesigned with
+          <span class="text-accent-primary animate-pulse-slow">♥</span> for a
+          premium experience.
         </p>
-        <div class="social-icon">
-            <a href="https://www.linkedin.com/in/iheb-trabelsi/"><i class='bx bxl-linkedin-square'></i></a>
-            <a href="https://github.com/IhebTrabelsii"><i class='bx bxl-github'></i></a>
-            <a href="https://www.instagram.com/iheb.trabelsi.ai/"><i class='bx bxl-instagram-alt' ></i></a>
-            <a href="https://www.facebook.com/profile.php?id=100092532861072"><i class='bx bxl-facebook-circle'></i></a>
-        </div>
-        <div class="btn-group">
-            <a href="./GraphicDesigner.png" class="btn" download="CV iheb-trabelsi">Download CV</a>
-            <a href="#contact" class="btn">Contact</a>
-        </div>
-    </div>
-    <div class="home-img">
-        <img src="image.jpg" alt="">
-    </div>
-</section>
-<section class="education" id="Education">
-    <h2 class="heading">Education</h2>
-    <div class="timeline-items">
-        <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-date">2021</div>
-            <div class="timeline-content">
-                <h3>High School</h3>
-                <p>I attended El Mida-Nabeul High School for three years,
-                     graduating in the fourth year with a bachelor's degree.
-                </p>
-            </div>
-        </div>
-        <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-date">2022</div>
-            <div class="timeline-content">
-                <h3>University</h3>
-                <p>I spent three years studying at ISET SIDI BOUZID. 
-                    I graduated with a wealth of knowledge and expertise in a variety of fields,
-                     including front-end and back-end development, 
-                     game development, graphic design, and multimedia.
-                </p>
-            </div>
-        </div>
-        <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-date">2023</div>
-            <div class="timeline-content">
-                <h3>Internship</h3>
-                <p class="inter">Post-internship in Tunisia: Acquired practical knowledge
-                     in IT operations and customer service, boosting user
-                      happiness and optimising digital systems.<br><br>
+      </div>
+    </footer>
 
-                    During my internship at Uniteck Universal 
-                    Technology, I gained technical expertise in software
-                     development and system integration while working on 
-                     creative projects and interacting with a vibrant team of experts.<br><br>
-                    
-                    PFE at Uniteck Universal Technologies: streamlined 
-                    the consumer purchase process and enhanced the company's
-                     online presence through the effective design and
-                      implementation of an e-commerce website.
-                </p>
-            </div>
-        </div>
-    </div>
-</section>
-<section class="services" id="Services">
-    <h2 class="heading">Services</h2>
-    <div class="services-container">
-        <div class="services-box">
-            <div class="services-info">
-                <h4>UI / UX Designer</h4>
-                <p>I create aesthetically pleasing and user-friendly 
-                    interfaces as a UI/UX designer to guarantee smooth
-                     user experiences. My area of expertise is user-centered
-                      design, which improves usability by utilising feedback
-                       and research. I am passionate about design trends and
-                        work hard to produce useful and interesting digital goods.
-                </p>
-            </div>
-        </div>
-        <div class="services-box">
-            <div class="services-info">
-                <h4>Frontend Developer</h4>
-                <p>I develop dynamic, responsive websites that facilitate
-                     smooth user interactions as a seasoned front-end developer.
-                      I'm excellent at using contemporary frameworks and technologies
-                       to convert intricate design mockups into clear, effective code.
-                        I guarantee top performance and a remarkable user
-                         experience by adhering to best practices.
-                </p>
-            </div>
-        </div>
-        <div class="services-box">
-            <div class="services-info">
-                <h4>Backend Developer</h4>
-                <p>I create and implement reliable server-side applications
-                     as a backend developer to guarantee smooth system integration
-                      and data processing. My area of expertise is developing safe,
-                       scalable, and effective database and API solutions. 
-                       I'm dedicated to following best practices and work hard 
-                       to provide dependable and high performance backend operations.
-                </p>
-            </div>
-        </div>
-        <div class="services-box">
-            <div class="services-info">
-                <h4>Graphic Designer </h4>
-                <p>With four years of experience working as a freelance graphic designer,
-                     I am an expert at developing eye-catching visual solutions that 
-                     clearly convey client messages. I approach every job with a
-                      combination of technical expertise and creativity, producing 
-                      designs that are both high-quality and match customer goals.
-                       My vast experience working as a freelancer has sharpened my 
-                       capacity to adjust to a variety of customer requirements and
-                        market trends, guaranteeing creative and significant results.
-                </p>
-            </div>
-        </div>
-    </div>
-</section>
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+      // --- Typewriter ---
+      const roles = [
+        "Full Stack Developer",
+        "React Native Developer",
+        "Web Developer",
+        "API Builder",
+      ];
+      const twEl = document.getElementById("typewriter");
+      let rIdx = 0,
+        cIdx = 0,
+        deleting = false;
 
-<section class="testimonials" id="testimonials">
-    <div class="testimonials-box">
-        <h2 class="testimonials-heading">Testimonials</h2>
-        <div class="wrapper">
-            <div class="testimonials-item">
-                <img src="6.png" alt="">
-                <h2>Chahid Ben Mahmoud</h2>
-                <div class="rating">
-                    <i class='bx bxs-star' id="star"></i>
-                    <i class='bx bxs-star' id="star"></i>
-                    <i class='bx bxs-star' id="star"></i>
-                    <i class='bx bxs-star' id="star"></i>
-                    <i class='bx bxs-star' id="star"></i>
-                </div>
-                <p>Dedicated worker at Poste Tunisienne with expertise in customer service
-                    and postal operations. Committed to efficiency, reliability, and a positive
-                    customer experience. Passionate about serving the community and ensuring smooth logistics.
-                </p>
-            </div>
-            <div class="testimonials-item">
-                <img src="5.jpg" alt="">
-                <h2>Anis Zouari</h2>
-                <div class="rating">
-                    <i class='bx bxs-star' id="star"></i>
-                    <i class='bx bxs-star' id="star"></i>
-                    <i class='bx bxs-star' id="star"></i>
-                    <i class='bx bxs-star' id="star"></i>
-                    <i class='bx bxs-star' id="star"></i>
-                </div>
-                <p>I'm inspired to suggest Iheb Trabelsi for an internship in graphic design. 
-                    They have four years of expertise as web developers and graphic designers,
-                    and they are passionate about producing colourful, user-friendly digital solutions.
-                    They would make a fantastic addition to your company due to their passion to
-                    learn and participate in creative endeavours.
-                </p>
-            </div>
-            <div class="testimonials-item">
-                <img src="7.jpg" alt="">
-                <h2>Monji Trabelsi</h2>
-                <div class="rating">
-                    <i class='bx bxs-star' id="star"></i>
-                    <i class='bx bxs-star' id="star"></i>
-                    <i class='bx bxs-star' id="star"></i>
-                    <i class='bx bxs-star' id="star"></i>
-                    <i class='bx bxs-star' id="star"></i>
-                </div>
-                <p>Iheb Trabelsi has demonstrated exceptional dedication and competence 
-                    during their one-month internship at our bank. They quickly adapted 
-                    to our processes, showed strong analytical skills, and contributed 
-                    positively to our team's projects. Their professionalism and eagerness 
-                    to learn make them a valuable asset to our organization.
-                </p>
-            </div>
-        </div>
-    </div>
-</section>
+      function typeLoop() {
+        const word = roles[rIdx];
+        if (!deleting) {
+          cIdx++;
+          twEl.textContent = word.slice(0, cIdx);
+          if (cIdx === word.length) {
+            deleting = true;
+            setTimeout(typeLoop, 2000);
+            return;
+          }
+        } else {
+          cIdx--;
+          twEl.textContent = word.slice(0, cIdx);
+          if (cIdx === 0) {
+            deleting = false;
+            rIdx = (rIdx + 1) % roles.length;
+          }
+        }
+        setTimeout(typeLoop, deleting ? 50 : 100);
+      }
+      window.addEventListener("load", typeLoop);
 
-<section class="contact" id="contact">
-    <h2 class="heading">Contact<span> Me</span></h2>
-    <form action="https://formsubmit.co/iheb.trabelsi.gd@gmail.com" method="POST">
-        <div class="input-group">
-            <div class="input-box">
-                <input type="text" name="Full Name" required placeholder="Full Name">
-                <input type="email" name="Email" required placeholder="Email">
-            </div>
-            <div class="input-box">
-                <input type="number" name="Phone number" required placeholder="Phone Number">
-                <input type="text"name="Subject" required  placeholder="Subject">
-            </div>
-        </div>
-        <div class="input-group-2">
-            <textarea cols="30" rows="10" name="message" required placeholder="Your Message"></textarea>
-            <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_cc" value="another@email.com,yetanother@email.com">
-            <button type="submit" value="Send Message" class="btn">Send Message</button>
-        </div>
-    </form>
-</section>
+      // --- Terminal ---
+      const termBody = document.getElementById("terminal-body");
+      const codeLines = [
+        { t: "const ", c: "term-key" },
+        { t: "developer", c: "" },
+        { t: " = {\n", c: "" },
+        { t: "  name", c: "term-key" },
+        { t: ": ", c: "" },
+        { t: "'Iheb Trabelsi'", c: "term-str" },
+        { t: ",\n", c: "" },
+        { t: "  stack", c: "term-key" },
+        { t: ": [", c: "" },
+        { t: "'React'", c: "term-str" },
+        { t: ", ", c: "" },
+        { t: "'Node.js'", c: "term-str" },
+        { t: ", ", c: "" },
+        { t: "'PostgreSQL'", c: "term-str" },
+        { t: "],\n", c: "" },
+        { t: "  based", c: "term-key" },
+        { t: ": ", c: "" },
+        { t: "'Tunisia'", c: "term-str" },
+        { t: ",\n", c: "" },
+        { t: "  isShipping", c: "term-key" },
+        { t: ": ", c: "" },
+        { t: "true", c: "term-fn" },
+        { t: "\n", c: "" },
+        { t: "};", c: "" },
+      ];
+      let i = 0,
+        fullHtml = "";
 
-<footer class="footer">
-    <div class="social">
-        <a href="https://www.linkedin.com/in/iheb-trabelsi/"><i class='bx bxl-linkedin-square'></i></a>
-        <a href="https://github.com/IhebTrabelsii"><i class='bx bxl-github'></i></a>
-        <a href="https://www.instagram.com/iheb.trabelsi.ai/"><i class='bx bxl-instagram-alt' ></i></a>
-        <a href="https://www.facebook.com/profile.php?id=100092532861072"><i class='bx bxl-facebook-circle'></i></a>
-    </div>
-    <ul class="list">
-        <li>
-            <a href="#Education">Education</a>
-        </li>
-        <li>
-            <a href="#Services">Services</a>
-        </li>
-        <li>
-            <a href="#home">About Me</a>
-        </li>
-        <li>
-            <a href="#contact">Contact</a>
-        </li>
-        <li>
-            <a href="#testimonials">Testimonials</a>
-        </li>
-    </ul>
-    <p class="copyright">
-        @ Amelia Morgan | All Rights Reserved
-    </p>
-</footer>
+      function stepTerminal() {
+        if (i < codeLines.length) {
+          const line = codeLines[i];
+          const content = line.c
+            ? `<span class="${line.c}">${line.t}</span>`
+            : line.t;
+          fullHtml += content;
+          termBody.innerHTML =
+            fullHtml.replace(/\n/g, "<br>") +
+            '<span class="w-2 h-4 inline-block align-middle bg-accent-tertiary ml-1 animate-pulse"></span>';
+          i++;
+          setTimeout(stepTerminal, 80);
+        }
+      }
+      setTimeout(stepTerminal, 1000);
 
-<script src="script.js"></script>
-</body>
+      // --- Scroll Reveal ---
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("active");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1, rootMargin: "0px 0px -50px 0px" },
+      );
+      document
+        .querySelectorAll(".reveal")
+        .forEach((el) => observer.observe(el));
 
+      // --- Counters ---
+      const counterObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const el = entry.target;
+              const target = parseInt(el.getAttribute("data-target"));
+              const suffix = el.getAttribute("data-suffix") || "";
+              let count = 0;
+              const increment = target / (1500 / 16);
+
+              const updateCount = () => {
+                count += increment;
+                if (count < target) {
+                  el.textContent = Math.round(count) + suffix;
+                  requestAnimationFrame(updateCount);
+                } else {
+                  el.textContent = target + suffix;
+                }
+              };
+              updateCount();
+              counterObserver.unobserve(el);
+            }
+          });
+        },
+        { threshold: 0.5 },
+      );
+      document
+        .querySelectorAll(".counter-num")
+        .forEach((counter) => counterObserver.observe(counter));
+
+      // --- Magnetic Buttons ---
+      document.querySelectorAll(".magnetic").forEach((btn) => {
+        btn.addEventListener("mousemove", (e) => {
+          const rect = btn.getBoundingClientRect();
+          const x = e.clientX - rect.left - rect.width / 2;
+          const y = e.clientY - rect.top - rect.height / 2;
+          btn.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+        });
+        btn.addEventListener("mouseleave", () => {
+          btn.style.transform = "translate(0, 0)";
+        });
+      });
+
+      // --- Header Blur ---
+      window.addEventListener("scroll", () => {
+        const header = document.getElementById("header");
+        if (window.scrollY > 50) {
+          header.classList.add("glass", "h-16");
+          header.classList.remove("h-20");
+        } else {
+          header.classList.remove("glass", "h-16");
+          header.classList.add("h-20");
+        }
+      });
+
+      // --- Parallax Orbs ---
+      window.addEventListener("mousemove", (e) => {
+        const x = e.clientX / window.innerWidth;
+        const y = e.clientY / window.innerHeight;
+        document.querySelectorAll(".orb").forEach((orb, idx) => {
+          const factor = (idx + 1) * 20;
+          orb.style.transform = `translate(${x * factor}px, ${y * factor}px)`;
+        });
+      });
+
+      // --- Mobile Menu ---
+      const menuToggle = document.getElementById("menu-toggle");
+      const navbar = document.getElementById("navbar");
+      menuToggle.addEventListener("click", () => {
+        navbar.classList.toggle("hidden");
+        navbar.classList.toggle("flex");
+        navbar.classList.toggle("absolute");
+        navbar.classList.toggle("top-20");
+        navbar.classList.toggle("left-0");
+        navbar.classList.toggle("w-full");
+        navbar.classList.toggle("bg-dark");
+        navbar.classList.toggle("p-6");
+        navbar.classList.toggle("flex-col");
+      });
+    </script>
+  </body>
 </html>

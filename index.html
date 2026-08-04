@@ -3,54 +3,40 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Iheb Trabelsi — Premium Portfolio</title>
+    <title>Iheb Trabelsi — Full Stack Developer</title>
 
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,500;1,9..144,600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
-
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Font Awesome -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
+    <script src="https://cdn.tailwindcss.com"></script>
 
     <script>
       tailwind.config = {
         theme: {
           extend: {
             colors: {
-              dark: "#050505",
-              surface: "#0f0f0f",
-              accent: {
-                primary: "#6366f1",
-                secondary: "#a855f7",
-                tertiary: "#3b82f6",
-              },
-              muted: "#94a3b8",
-              "muted-darker": "#475569",
+              ink: "#120E0B",
+              surface: "#1C1610",
+              surface2: "#241C14",
+              cobalt: "#5482C4",
+              "cobalt-deep": "#2C4C7C",
+              ochre: "#DDA84A",
+              sage: "#8A9C74",
+              cream: "#F3E9D6",
+              muted: "#B7A99A",
+              "muted-dark": "#6B5F51",
             },
             fontFamily: {
+              display: ["Fraunces", "serif"],
               sans: ["Inter", "sans-serif"],
-              display: ["Plus Jakarta Sans", "sans-serif"],
               mono: ["JetBrains Mono", "monospace"],
-            },
-            animation: {
-              "pulse-slow": "pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite",
-              float: "float 6s ease-in-out infinite",
-            },
-            keyframes: {
-              float: {
-                "0%, 100%": { transform: "translateY(0) rotate(0)" },
-                "50%": { transform: "translateY(-20px) rotate(1deg)" },
-              },
             },
           },
         },
@@ -58,403 +44,290 @@
     </script>
 
     <style>
-      /* --- CUSTOM STYLES --- */
+      html { background: #120E0B; }
+      ::-webkit-scrollbar { width: 8px; }
+      ::-webkit-scrollbar-track { background: #120E0B; }
+      ::-webkit-scrollbar-thumb { background: #3a2f24; border-radius: 10px; border: 2px solid #120E0B; }
+      ::-webkit-scrollbar-thumb:hover { background: #4d3f2f; }
+      ::selection { background: rgba(221, 168, 74, 0.28); color: #F3E9D6; }
 
-      ::-webkit-scrollbar {
-        width: 8px;
-      }
-      ::-webkit-scrollbar-track {
-        background: #050505;
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #1f1f1f;
-        border-radius: 10px;
-        border: 2px solid #050505;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: #2d2d2d;
-      }
+      body { cursor: none; }
+      @media (max-width: 900px), (pointer: coarse) { body { cursor: auto; } #cursor-dot, #cursor-ring { display: none; } }
 
-      ::selection {
-        background: rgba(99, 102, 241, 0.3);
-        color: #fff;
+      #cursor-dot, #cursor-ring {
+        position: fixed; top: 0; left: 0; pointer-events: none; z-index: 999;
+        border-radius: 50%; will-change: transform;
+        transition: opacity .2s ease;
       }
-
-      .glass {
-        background: rgba(15, 15, 15, 0.7);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 255, 255, 0.05);
+      #cursor-dot { width: 5px; height: 5px; background: #DDA84A; }
+      #cursor-ring {
+        width: 34px; height: 34px; border: 1px solid rgba(221,168,74,0.5);
+        transition: width .25s cubic-bezier(.23,1,.32,1), height .25s cubic-bezier(.23,1,.32,1), border-color .25s ease, opacity .2s ease, background .25s ease;
       }
+      .cursor-grow #cursor-ring { width: 64px; height: 64px; border-color: rgba(221,168,74,0.9); background: rgba(221,168,74,0.06); }
 
-      .glass-card {
-        background: linear-gradient(
-          135deg,
-          rgba(255, 255, 255, 0.03),
-          rgba(255, 255, 255, 0.01)
-        );
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      #scroll-bar {
+        position: fixed; top: 0; left: 0; height: 3px; z-index: 60;
+        background: linear-gradient(90deg, #2C4C7C, #DDA84A, #8A9C74);
+        width: 0%;
       }
 
-      .glass-card:hover {
-        border-color: rgba(99, 102, 241, 0.3);
-        background: linear-gradient(
-          135deg,
-          rgba(255, 255, 255, 0.05),
-          rgba(255, 255, 255, 0.02)
-        );
-        transform: translateY(-8px);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-      }
+      .glass { background: rgba(18, 14, 11, 0.72); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); border-bottom: 1px solid rgba(243,233,214,0.06); }
 
-      .text-gradient {
-        background: linear-gradient(to right, #fff, #94a3b8);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+      .card {
+        background: linear-gradient(155deg, rgba(243,233,214,0.05), rgba(243,233,214,0.015));
+        border: 1px solid rgba(243,233,214,0.08);
+        transition: transform .5s cubic-bezier(.23,1,.32,1), border-color .4s ease, box-shadow .4s ease;
       }
+      .card:hover { border-color: rgba(221,168,74,0.35); box-shadow: 0 24px 48px rgba(0,0,0,0.45); }
 
-      .accent-gradient {
-        background: linear-gradient(135deg, #6366f1, #a855f7);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-      }
+      .text-clay { background: linear-gradient(90deg, #F3E9D6, #B7A99A); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+      .text-glaze { background: linear-gradient(100deg, #DDA84A, #C98A3D 45%, #5482C4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 
-      .orb {
-        position: absolute;
-        border-radius: 50%;
-        filter: blur(120px);
-        z-index: 0;
-        pointer-events: none;
-        opacity: 0.15;
-      }
+      .grain { position: fixed; inset: 0; z-index: 45; pointer-events: none; mix-blend-mode: overlay; opacity: 0.6; }
 
-      .magnetic {
-        transition: transform 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+      .blob { position: absolute; border-radius: 50%; filter: blur(90px); pointer-events: none; z-index: 0; }
+      @keyframes morph {
+        0%, 100% { border-radius: 46% 54% 60% 40% / 50% 45% 55% 50%; }
+        50% { border-radius: 60% 40% 44% 56% / 40% 60% 40% 60%; }
       }
+      .blob-anim { animation: morph 14s ease-in-out infinite; }
 
-      .reveal {
-        opacity: 0;
-        transform: translateY(30px);
-        transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
-      }
-      .reveal.active {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      .reveal { opacity: 0; transform: translateY(26px); filter: blur(4px); transition: opacity .9s cubic-bezier(.23,1,.32,1), transform .9s cubic-bezier(.23,1,.32,1), filter .9s ease; }
+      .reveal.active { opacity: 1; transform: translateY(0); filter: blur(0); }
 
-      .timeline-line {
-        background: linear-gradient(to bottom, #6366f1, transparent);
-      }
+      .word { display: inline-block; opacity: 0; transform: translateY(100%); animation: word-up .8s cubic-bezier(.23,1,.32,1) forwards; }
+      @keyframes word-up { to { opacity: 1; transform: translateY(0); } }
 
-      .term-key {
-        color: #f472b6;
+      .float-badge { animation: float-badge 5s ease-in-out infinite; }
+      @keyframes float-badge { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+      .term-key { color: #DDA84A; }
+      .term-fn { color: #8A9C74; }
+
+      .marquee-track { display: flex; width: max-content; animation: marquee 32s linear infinite; }
+      @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+      .tick { color: #DDA84A; }
+      .term-str { color: #5482C4; }
+      .term-comment { color: #6B5F51; }
+
+      .nav-link { position: relative; }
+      .nav-link::after {
+        content: ""; position: absolute; left: 0; bottom: -6px; width: 0%; height: 1px;
+        background: #DDA84A; transition: width .35s cubic-bezier(.23,1,.32,1);
       }
-      .term-str {
-        color: #60a5fa;
-      }
-      .term-fn {
-        color: #a78bfa;
-      }
-      .term-comment {
-        color: #64748b;
+      .nav-link.active::after, .nav-link:hover::after { width: 100%; }
+      .nav-link.active { color: #F3E9D6; }
+
+      .tilt { transform-style: preserve-3d; will-change: transform; }
+
+      @media (prefers-reduced-motion: reduce) {
+        .blob-anim, .marquee-track, .word, .float-badge { animation: none !important; }
+        .reveal { opacity: 1 !important; transform: none !important; filter: none !important; }
       }
     </style>
   </head>
-  <body class="bg-dark text-white font-sans antialiased overflow-x-hidden">
-    <!-- Background Orbs -->
-    <div class="fixed inset-0 overflow-hidden pointer-events-none">
-      <div
-        class="orb w-[500px] h-[500px] -top-20 -left-20 bg-accent-primary"
-      ></div>
-      <div
-        class="orb w-[400px] h-[400px] top-1/2 -right-20 bg-accent-secondary"
-      ></div>
-      <div
-        class="orb w-[300px] h-[300px] -bottom-20 left-1/3 bg-accent-tertiary"
-      ></div>
+  <body class="bg-ink text-cream font-sans antialiased overflow-x-hidden">
+    <div id="cursor-ring"></div>
+    <div id="cursor-dot"></div>
+    <div id="scroll-bar"></div>
+
+    <svg style="display:none">
+      <filter id="grainFilter">
+        <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch" />
+        <feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.05 0" />
+      </filter>
+    </svg>
+    <div class="grain" style="filter:url(#grainFilter)"></div>
+
+    <!-- Ambient glaze blobs -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+      <div id="blob1" class="blob blob-anim w-[520px] h-[520px] -top-32 -left-32 bg-cobalt-deep opacity-25"></div>
+      <div id="blob2" class="blob blob-anim w-[460px] h-[460px] top-[60%] -right-40 bg-ochre opacity-[0.16]" style="animation-delay:-6s"></div>
+      <div id="blob3" class="blob blob-anim w-[380px] h-[380px] bottom-0 left-[30%] bg-sage opacity-[0.14]" style="animation-delay:-10s"></div>
     </div>
 
     <!-- ===== HEADER ===== -->
-    <header
-      id="header"
-      class="fixed top-0 left-0 w-full z-50 transition-all duration-300 h-20"
-    >
-      <div
-        class="max-w-7xl mx-auto px-6 h-full flex items-center justify-between"
-      >
-        <a
-          href="#home"
-          class="group flex items-center gap-2 font-display font-bold text-xl tracking-tight"
-        >
-          <span
-            class="w-2 h-2 rounded-full bg-accent-primary group-hover:scale-150 transition-transform duration-300 shadow-[0_0_12px_rgba(99,102,241,0.8)]"
-          ></span>
-          iheb.trabelsi
+    <header id="header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 h-20">
+      <div class="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
+        <a href="#home" class="group flex items-center gap-2 font-display font-semibold text-xl tracking-tight">
+          <svg width="18" height="18" viewBox="0 0 18 18" class="group-hover:rotate-45 transition-transform duration-500">
+            <circle cx="9" cy="9" r="8" fill="none" stroke="#DDA84A" stroke-width="1.4" />
+            <circle cx="9" cy="9" r="2.2" fill="#DDA84A" />
+          </svg>
+          Iheb Trabelsi
         </a>
 
-        <nav
-          id="navbar"
-          class="hidden md:flex items-center gap-8 font-mono text-sm uppercase tracking-widest text-muted"
-        >
-          <a
-            href="#home"
-            class="hover:text-white transition-colors duration-300 text-white"
-            >Home</a
-          >
-          <a
-            href="#about"
-            class="hover:text-white transition-colors duration-300"
-            >About</a
-          >
-          <a
-            href="#experience"
-            class="hover:text-white transition-colors duration-300"
-            >Experience</a
-          >
-          <a
-            href="#projects"
-            class="hover:text-white transition-colors duration-300"
-            >Projects</a
-          >
-          <a
-            href="#contact"
-            class="hover:text-white transition-colors duration-300"
-            >Contact</a
-          >
+        <nav id="navbar" class="hidden md:flex items-center gap-9 font-mono text-xs uppercase tracking-widest text-muted">
+          <a href="#home" data-nav class="nav-link active hover:text-cream transition-colors duration-300">Home</a>
+          <a href="#about" data-nav class="nav-link hover:text-cream transition-colors duration-300">About</a>
+          <a href="#experience" data-nav class="nav-link hover:text-cream transition-colors duration-300">Experience</a>
+          <a href="#projects" data-nav class="nav-link hover:text-cream transition-colors duration-300">Projects</a>
+          <a href="#contact" data-nav class="nav-link hover:text-cream transition-colors duration-300">Contact</a>
         </nav>
 
-        <button id="menu-toggle" class="md:hidden text-2xl text-white">
+        <button id="menu-toggle" class="md:hidden text-2xl text-cream">
           <i class="fa-solid fa-bars-staggered"></i>
         </button>
       </div>
     </header>
 
-    <!-- ===== MAIN ===== -->
     <main class="relative z-10">
       <!-- HERO -->
-      <section
-        id="home"
-        class="min-h-screen flex items-center pt-20 px-6 max-w-7xl mx-auto"
-      >
+      <section id="home" class="min-h-screen flex items-center pt-24 px-6 max-w-7xl mx-auto">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          <div class="lg:col-span-7 reveal">
-            <div
-              class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-accent-primary/20 bg-accent-primary/5 text-accent-primary text-xs font-mono mb-6 uppercase tracking-widest"
-            >
-              <span class="relative flex h-2 w-2">
-                <span
-                  class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-primary opacity-75"
-                ></span>
-                <span
-                  class="relative inline-flex rounded-full h-2 w-2 bg-accent-primary"
-                ></span>
+          <div class="lg:col-span-7">
+            <div class="reveal active inline-flex items-center gap-2 px-3 py-1 rounded-full border border-ochre/25 bg-ochre/5 text-ochre text-xs font-mono mb-8 uppercase tracking-widest">
+              <span class="relative flex h-1.5 w-1.5">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-ochre opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-ochre"></span>
               </span>
-              Available for Work
+              Available for work
             </div>
 
-            <div class="mb-2 font-mono text-accent-tertiary text-lg">
+            <div class="mb-4 font-mono text-cobalt text-sm md:text-base overflow-hidden">
               <span id="typewriter"></span><span class="animate-pulse">|</span>
             </div>
 
-            <h1
-              class="font-display text-6xl md:text-8xl font-extrabold mb-8 leading-[1.1] text-gradient"
-            >
-              Iheb <br />
-              <span class="accent-gradient">Trabelsi.</span>
+            <h1 class="font-display text-6xl md:text-7xl lg:text-8xl font-semibold mb-8 leading-[1.05] text-cream">
+              <span class="overflow-hidden inline-block"><span class="word" style="animation-delay:.05s">Iheb</span></span>
+              <br />
+              <span class="overflow-hidden inline-block"><span class="word italic text-glaze" style="animation-delay:.2s">Trabelsi.</span></span>
             </h1>
 
-            <p
-              class="text-muted text-lg md:text-xl leading-relaxed max-w-xl mb-10"
-            >
-              Full-stack developer in Tunisia building responsive web and mobile
-              products. I turn fuzzy requirements into polished interfaces
-              people actually enjoy using.
+            <p class="reveal active text-muted text-lg md:text-xl leading-relaxed max-w-xl mb-4" style="transition-delay:.15s">
+              Full-stack developer working out of Nabeul, Tunisia — a town built on
+              pottery. I bring the same instinct here: shape something raw into an
+              interface that holds its form.
+            </p>
+            <p class="reveal active text-muted-dark font-mono text-sm mb-10" style="transition-delay:.25s">
+              React &middot; React Native &middot; Node.js &middot; Express &middot; PostgreSQL &middot; MongoDB
             </p>
 
-            <div class="flex flex-wrap gap-4 mb-12">
-              <a
-                href="#projects"
-                class="magnetic group relative px-8 py-4 bg-white text-dark font-semibold rounded-full overflow-hidden transition-all duration-300 hover:pr-12"
-              >
-                <span class="relative z-10">View Work</span>
-                <i
-                  class="fa-solid fa-arrow-right absolute right-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all"
-                ></i>
+            <div class="reveal active flex flex-wrap gap-4" style="transition-delay:.35s">
+              <a href="#projects" class="magnetic group relative px-8 py-4 bg-cream text-ink font-semibold rounded-full overflow-hidden transition-all duration-300 hover:pr-12">
+                <span class="relative z-10">View work</span>
+                <i class="fa-solid fa-arrow-right absolute right-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all"></i>
               </a>
-              <a
-                href="Iheb_Trabelsi_CV_ATS.pdf"
-                download
-                class="magnetic px-8 py-4 glass text-white font-semibold rounded-full hover:bg-white/10 transition-all border border-white/10"
-              >
-                Download CV
-                <i class="fa-solid fa-download ml-2 text-sm opacity-60"></i>
+              <a href="Iheb_Trabelsi_CV_ATS.pdf" download class="magnetic px-8 py-4 glass text-cream font-semibold rounded-full hover:bg-cream/5 transition-all border border-cream/10">
+                Download CV <i class="fa-solid fa-download ml-2 text-sm opacity-60"></i>
               </a>
             </div>
 
-<div class="flex gap-6 text-2xl text-muted-darker">
-  <a href="https://www.linkedin.com/in/iheb-trabelsi" target="_blank" class="hover:text-accent-primary transition-colors duration-300"><i class="fa-brands fa-linkedin"></i></a>
-  <a href="https://github.com/IhebTrabelsii" target="_blank" class="hover:text-white transition-colors duration-300"><i class="fa-brands fa-github"></i></a>
-  <a href="https://www.behance.net/ihebtrabelsi1" target="_blank" class="hover:text-accent-secondary transition-colors duration-300"><i class="fa-brands fa-behance"></i></a>
-</div>
+            <div class="reveal active flex gap-6 text-xl text-muted-dark mt-12" style="transition-delay:.45s">
+              <a href="https://www.linkedin.com/in/iheb-trabelsi-b71ba841b/" target="_blank" class="hover:text-cobalt transition-colors duration-300"><i class="fa-brands fa-linkedin"></i></a>
+              <a href="https://github.com/IhebTrabelsii" target="_blank" class="hover:text-cream transition-colors duration-300"><i class="fa-brands fa-github"></i></a>
+              <a href="https://www.behance.net/ihebtrabelsi1" target="_blank" class="hover:text-ochre transition-colors duration-300"><i class="fa-brands fa-behance"></i></a>
+            </div>
           </div>
 
-          <div class="lg:col-span-5 relative hidden lg:block reveal">
-            <div class="animate-float">
-              <div
-                class="glass-card rounded-2xl overflow-hidden border border-white/10 shadow-2xl"
-              >
-                <div
-                  class="flex items-center gap-2 px-4 py-3 border-b border-white/5 bg-white/5"
-                >
-                  <div class="w-3 h-3 rounded-full bg-red-500/50"></div>
-                  <div class="w-3 h-3 rounded-full bg-amber-500/50"></div>
-                  <div class="w-3 h-3 rounded-full bg-emerald-500/50"></div>
-                  <div
-                    class="ml-4 text-[10px] font-mono text-muted uppercase tracking-tighter"
-                  >
-                    Developer.js — Visual Studio Code
-                  </div>
+          <div class="lg:col-span-5 relative hidden lg:flex justify-center reveal active" style="transition-delay:.2s">
+            <div class="relative w-full max-w-md">
+              <div class="float-badge absolute -top-6 -left-6 glass px-4 py-2 rounded-full flex items-center gap-2 text-xs font-mono border border-cream/10 z-10" style="animation-delay:0s">
+                <i class="fa-brands fa-react text-cobalt"></i> React
+              </div>
+              <div class="float-badge absolute -top-4 -right-8 glass px-4 py-2 rounded-full flex items-center gap-2 text-xs font-mono border border-cream/10 z-10" style="animation-delay:1.4s">
+                <i class="fa-brands fa-node-js text-sage"></i> Node.js
+              </div>
+              <div class="float-badge absolute -bottom-6 left-10 glass px-4 py-2 rounded-full flex items-center gap-2 text-xs font-mono border border-cream/10 z-10" style="animation-delay:2.4s">
+                <i class="fa-solid fa-database text-ochre"></i> PostgreSQL
+              </div>
+
+              <div class="card rounded-2xl overflow-hidden border border-cream/10 shadow-2xl">
+                <div class="flex items-center gap-2 px-4 py-3 border-b border-cream/5 bg-cream/5">
+                  <div class="w-3 h-3 rounded-full" style="background:#c96a5a99"></div>
+                  <div class="w-3 h-3 rounded-full bg-ochre/60"></div>
+                  <div class="w-3 h-3 rounded-full bg-sage/60"></div>
+                  <div class="ml-4 text-[10px] font-mono text-muted uppercase tracking-tighter">developer.js — VS Code</div>
                 </div>
-                <div
-                  class="p-6 font-mono text-sm leading-relaxed"
-                  id="terminal-body"
-                >
-                  <span
-                    class="w-2 h-4 inline-block align-middle bg-accent-tertiary ml-1 animate-pulse"
-                  ></span>
+                <div class="p-6 font-mono text-sm leading-relaxed min-h-[240px]" id="terminal-body">
+                  <span class="w-2 h-4 inline-block align-middle bg-cobalt ml-1 animate-pulse"></span>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div
-          class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-muted-darker"
-        >
-          <span class="text-[10px] uppercase tracking-widest font-mono"
-            >Scroll</span
-          >
-          <div
-            class="w-px h-12 bg-gradient-to-b from-accent-primary/50 to-transparent"
-          ></div>
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-muted-dark">
+          <span class="text-[10px] uppercase tracking-widest font-mono">Scroll</span>
+          <div class="w-px h-12 bg-gradient-to-b from-ochre/50 to-transparent"></div>
+        </div>
+      </section>
+
+      <!-- MARQUEE DIVIDER -->
+      <section class="relative py-8 bg-cream text-ink overflow-hidden border-y border-ink/10">
+        <div class="marquee-track font-mono text-sm uppercase tracking-[0.25em]">
+          <div class="flex items-center gap-10 pr-10">
+            <span>JavaScript</span><span class="text-ochre">&#9670;</span>
+            <span>TypeScript</span><span class="text-cobalt">&#9670;</span>
+            <span>React</span><span class="text-sage">&#9670;</span>
+            <span>React Native</span><span class="text-ochre">&#9670;</span>
+            <span>Node.js</span><span class="text-cobalt">&#9670;</span>
+            <span>Express</span><span class="text-sage">&#9670;</span>
+            <span>PostgreSQL</span><span class="text-ochre">&#9670;</span>
+            <span>MongoDB</span><span class="text-cobalt">&#9670;</span>
+            <span>REST APIs</span><span class="text-sage">&#9670;</span>
+            <span>Git</span><span class="text-ochre">&#9670;</span>
+          </div>
+          <div class="flex items-center gap-10 pr-10" aria-hidden="true">
+            <span>JavaScript</span><span class="text-ochre">&#9670;</span>
+            <span>TypeScript</span><span class="text-cobalt">&#9670;</span>
+            <span>React</span><span class="text-sage">&#9670;</span>
+            <span>React Native</span><span class="text-ochre">&#9670;</span>
+            <span>Node.js</span><span class="text-cobalt">&#9670;</span>
+            <span>Express</span><span class="text-sage">&#9670;</span>
+            <span>PostgreSQL</span><span class="text-ochre">&#9670;</span>
+            <span>MongoDB</span><span class="text-cobalt">&#9670;</span>
+            <span>REST APIs</span><span class="text-sage">&#9670;</span>
+            <span>Git</span><span class="text-ochre">&#9670;</span>
+          </div>
         </div>
       </section>
 
       <!-- ABOUT -->
       <section id="about" class="py-32 px-6 max-w-7xl mx-auto">
         <div class="mb-16 reveal">
-          <span
-            class="font-mono text-accent-primary text-sm tracking-[0.3em] uppercase mb-4 block"
-            >whoami</span
-          >
-          <h2 class="font-display text-4xl md:text-6xl font-bold text-gradient">
-            About Me.
-          </h2>
+          <span class="font-mono text-ochre text-sm tracking-[0.3em] uppercase mb-4 block">01 — whoami</span>
+          <h2 class="font-display text-4xl md:text-6xl font-semibold text-clay">About me.</h2>
         </div>
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
           <div class="reveal">
             <p class="text-muted text-lg leading-relaxed mb-6">
-              I'm a full-stack developer based in Nabeul, Tunisia, working
-              across
-              <span class="text-white font-medium"
-                >React, React Native, Node.js, Express</span
-              >
-              and both
-              <span class="text-white font-medium">MongoDB and PostgreSQL</span
-              >.
+              I'm a full-stack developer based in Nabeul, Tunisia, working across
+              <span class="text-cream font-medium">React, React Native, Node.js, Express</span>,
+              and both <span class="text-cream font-medium">MongoDB and PostgreSQL</span>.
             </p>
             <p class="text-muted text-lg leading-relaxed mb-10">
-              I've spent the past couple of years building real products — from
-              a cross-platform fitness app to an e-commerce platform for PC
-              components. I care about clean, scalable code and interfaces that
-              don't make people think twice.
+              I've spent the past couple of years building real products — from a
+              cross-platform fitness app to an e-commerce platform for PC components.
+              I care about clean, scalable code and interfaces that don't make people
+              think twice.
             </p>
             <div class="flex flex-wrap gap-3">
-              <span
-                class="px-4 py-2 rounded-lg bg-surface border border-white/5 text-muted text-sm font-mono hover:border-accent-primary/30 transition-colors"
-                >JavaScript</span
-              >
-              <span
-                class="px-4 py-2 rounded-lg bg-surface border border-white/5 text-muted text-sm font-mono hover:border-accent-primary/30 transition-colors"
-                >TypeScript</span
-              >
-              <span
-                class="px-4 py-2 rounded-lg bg-surface border border-white/5 text-muted text-sm font-mono hover:border-accent-primary/30 transition-colors"
-                >React</span
-              >
-              <span
-                class="px-4 py-2 rounded-lg bg-surface border border-white/5 text-muted text-sm font-mono hover:border-accent-primary/30 transition-colors"
-                >Node.js</span
-              >
-              <span
-                class="px-4 py-2 rounded-lg bg-surface border border-white/5 text-muted text-sm font-mono hover:border-accent-primary/30 transition-colors"
-                >Express</span
-              >
-              <span
-                class="px-4 py-2 rounded-lg bg-surface border border-white/5 text-muted text-sm font-mono hover:border-accent-primary/30 transition-colors"
-                >PostgreSQL</span
-              >
-              <span
-                class="px-4 py-2 rounded-lg bg-surface border border-white/5 text-muted text-sm font-mono hover:border-accent-primary/30 transition-colors"
-                >MongoDB</span
-              >
-              <span
-                class="px-4 py-2 rounded-lg bg-surface border border-white/5 text-muted text-sm font-mono hover:border-accent-primary/30 transition-colors"
-                >REST APIs</span
-              >
-              <span
-                class="px-4 py-2 rounded-lg bg-surface border border-white/5 text-muted text-sm font-mono hover:border-accent-primary/30 transition-colors"
-                >Git</span
-              >
+              <span class="px-4 py-2 rounded-lg bg-surface border border-cream/5 text-muted text-sm font-mono hover:border-ochre/30 hover:text-cream transition-colors">JavaScript</span>
+              <span class="px-4 py-2 rounded-lg bg-surface border border-cream/5 text-muted text-sm font-mono hover:border-ochre/30 hover:text-cream transition-colors">TypeScript</span>
+              <span class="px-4 py-2 rounded-lg bg-surface border border-cream/5 text-muted text-sm font-mono hover:border-ochre/30 hover:text-cream transition-colors">React</span>
+              <span class="px-4 py-2 rounded-lg bg-surface border border-cream/5 text-muted text-sm font-mono hover:border-ochre/30 hover:text-cream transition-colors">Node.js</span>
+              <span class="px-4 py-2 rounded-lg bg-surface border border-cream/5 text-muted text-sm font-mono hover:border-ochre/30 hover:text-cream transition-colors">Express</span>
+              <span class="px-4 py-2 rounded-lg bg-surface border border-cream/5 text-muted text-sm font-mono hover:border-ochre/30 hover:text-cream transition-colors">PostgreSQL</span>
+              <span class="px-4 py-2 rounded-lg bg-surface border border-cream/5 text-muted text-sm font-mono hover:border-ochre/30 hover:text-cream transition-colors">MongoDB</span>
+              <span class="px-4 py-2 rounded-lg bg-surface border border-cream/5 text-muted text-sm font-mono hover:border-ochre/30 hover:text-cream transition-colors">REST APIs</span>
+              <span class="px-4 py-2 rounded-lg bg-surface border border-cream/5 text-muted text-sm font-mono hover:border-ochre/30 hover:text-cream transition-colors">Git</span>
             </div>
           </div>
           <div class="grid grid-cols-1 md:grid-cols-3 gap-6 reveal">
-            <div class="glass-card p-8 rounded-2xl text-center">
-              <div
-                class="counter-num font-display text-5xl font-bold accent-gradient mb-2"
-                data-target="2"
-                data-suffix="+"
-              >
-                0
-              </div>
-              <div
-                class="text-muted text-xs font-mono uppercase tracking-widest"
-              >
-                Years Exp.
-              </div>
+            <div class="card p-8 rounded-2xl text-center">
+              <div class="counter-num font-display text-5xl font-semibold text-glaze mb-2" data-target="2" data-suffix="+">0</div>
+              <div class="text-muted text-xs font-mono uppercase tracking-widest">Years exp.</div>
             </div>
-            <div class="glass-card p-8 rounded-2xl text-center">
-              <div
-                class="counter-num font-display text-5xl font-bold accent-gradient mb-2"
-                data-target="5"
-                data-suffix="+"
-              >
-                0
-              </div>
-              <div
-                class="text-muted text-xs font-mono uppercase tracking-widest"
-              >
-                Projects
-              </div>
+            <div class="card p-8 rounded-2xl text-center">
+              <div class="counter-num font-display text-5xl font-semibold text-glaze mb-2" data-target="5" data-suffix="+">0</div>
+              <div class="text-muted text-xs font-mono uppercase tracking-widest">Projects</div>
             </div>
-            <div class="glass-card p-8 rounded-2xl text-center">
-              <div
-                class="counter-num font-display text-5xl font-bold accent-gradient mb-2"
-                data-target="12"
-                data-suffix="+"
-              >
-                0
-              </div>
-              <div
-                class="text-muted text-xs font-mono uppercase tracking-widest"
-              >
-                Technologies
-              </div>
+            <div class="card p-8 rounded-2xl text-center">
+              <div class="counter-num font-display text-5xl font-semibold text-glaze mb-2" data-target="12" data-suffix="+">0</div>
+              <div class="text-muted text-xs font-mono uppercase tracking-widest">Technologies</div>
             </div>
           </div>
         </div>
@@ -463,77 +336,43 @@
       <!-- EXPERIENCE -->
       <section id="experience" class="py-32 px-6 max-w-7xl mx-auto">
         <div class="mb-16 reveal">
-          <span
-            class="font-mono text-accent-tertiary text-sm tracking-[0.3em] uppercase mb-4 block"
-            >cat experience.log</span
-          >
-          <h2 class="font-display text-4xl md:text-6xl font-bold text-gradient">
-            Where I've Worked.
-          </h2>
+          <span class="font-mono text-cobalt text-sm tracking-[0.3em] uppercase mb-4 block">02 — cat experience.log</span>
+          <h2 class="font-display text-4xl md:text-6xl font-semibold text-clay">Where I've worked.</h2>
         </div>
         <div class="relative space-y-12">
-          <div
-            class="absolute left-[7px] top-4 bottom-4 w-px timeline-line opacity-20"
-          ></div>
+          <div class="absolute left-[7px] top-4 bottom-4 w-px bg-gradient-to-b from-ochre via-cream/10 to-transparent opacity-30"></div>
+
           <div class="relative pl-10 reveal">
-            <div
-              class="absolute left-0 top-2 w-4 h-4 rounded-full bg-dark border-2 border-accent-primary shadow-[0_0_10px_rgba(99,102,241,0.5)]"
-            ></div>
-            <div
-              class="mb-1 text-accent-primary font-mono text-xs uppercase tracking-widest"
-            >
-              08/2023 — Current
-            </div>
-            <h3 class="font-display text-2xl font-bold text-white mb-2">
-              Full Stack Developer
-            </h3>
-            <div class="text-muted-darker font-mono text-sm mb-4">
-              Freelance / Personal Projects · Tunisia
-            </div>
+            <div class="absolute left-0 top-2 w-4 h-4 rounded-full bg-ink border-2 border-ochre shadow-[0_0_10px_rgba(221,168,74,0.5)]"></div>
+            <div class="mb-1 text-ochre font-mono text-xs uppercase tracking-widest">08/2023 — Current</div>
+            <h3 class="font-display text-2xl font-semibold text-cream mb-2">Full Stack Developer</h3>
+            <div class="text-muted-dark font-mono text-sm mb-4">Freelance / Personal Projects · Tunisia</div>
             <p class="text-muted text-base max-w-2xl leading-relaxed">
               Building responsive web and mobile apps with React, React Native,
               Node.js, Express and PostgreSQL — REST APIs, auth, CRUD, and
               everything in between.
             </p>
           </div>
+
           <div class="relative pl-10 reveal">
-            <div
-              class="absolute left-0 top-2 w-4 h-4 rounded-full bg-dark border-2 border-white/20"
-            ></div>
-            <div
-              class="mb-1 text-muted-darker font-mono text-xs uppercase tracking-widest"
-            >
-              02/2026 — 07/2026
-            </div>
-            <h3 class="font-display text-2xl font-bold text-white mb-2">
-              Mobile Developer Intern
-            </h3>
-            <div class="text-muted-darker font-mono text-sm mb-4">
-              DEFENDR · Tunisia
-            </div>
+            <div class="absolute left-0 top-2 w-4 h-4 rounded-full bg-ink border-2 border-cream/20"></div>
+            <div class="mb-1 text-muted-dark font-mono text-xs uppercase tracking-widest">02/2026 — 07/2026</div>
+            <h3 class="font-display text-2xl font-semibold text-cream mb-2">Mobile Developer Intern</h3>
+            <div class="text-muted-dark font-mono text-sm mb-4">DEFENDR · Tunisia</div>
             <p class="text-muted text-base max-w-2xl leading-relaxed">
               Built GymBro end to end — auth, workout plans, nutrition tracking,
               and BMI/BMR calculators in React Native.
             </p>
           </div>
+
           <div class="relative pl-10 reveal">
-            <div
-              class="absolute left-0 top-2 w-4 h-4 rounded-full bg-dark border-2 border-white/20"
-            ></div>
-            <div
-              class="mb-1 text-muted-darker font-mono text-xs uppercase tracking-widest"
-            >
-              02/2026 — 07/2026
-            </div>
-            <h3 class="font-display text-2xl font-bold text-white mb-2">
-              Web Developer Intern
-            </h3>
-            <div class="text-muted-darker font-mono text-sm mb-4">
-              Unitech · Tunisia
-            </div>
+            <div class="absolute left-0 top-2 w-4 h-4 rounded-full bg-ink border-2 border-cream/20"></div>
+            <div class="mb-1 text-muted-dark font-mono text-xs uppercase tracking-widest">02/2026 — 07/2026</div>
+            <h3 class="font-display text-2xl font-semibold text-cream mb-2">Web Developer Intern</h3>
+            <div class="text-muted-dark font-mono text-sm mb-4">Unitech · Tunisia</div>
             <p class="text-muted text-base max-w-2xl leading-relaxed">
-              Developed a responsive e-commerce site for PC components,
-              improving usability and overall UX.
+              Developed a responsive e-commerce site for PC components, improving
+              usability and overall UX.
             </p>
           </div>
         </div>
@@ -542,104 +381,62 @@
       <!-- PROJECTS -->
       <section id="projects" class="py-32 px-6 max-w-7xl mx-auto">
         <div class="mb-16 reveal">
-          <span
-            class="font-mono text-accent-secondary text-sm tracking-[0.3em] uppercase mb-4 block"
-            >ls ./projects</span
-          >
-          <h2 class="font-display text-4xl md:text-6xl font-bold text-gradient">
-            Selected Work.
-          </h2>
+          <span class="font-mono text-sage text-sm tracking-[0.3em] uppercase mb-4 block">03 — ls ./projects</span>
+          <h2 class="font-display text-4xl md:text-6xl font-semibold text-clay">Selected work.</h2>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div class="glass-card p-8 rounded-3xl flex flex-col reveal group">
+          <div class="tilt card p-8 rounded-3xl flex flex-col reveal group">
             <div class="mb-8 flex justify-between items-start">
-              <span class="font-mono text-muted-darker text-sm">01</span>
-              <div
-                class="w-10 h-10 rounded-full bg-accent-primary/10 flex items-center justify-center text-accent-primary group-hover:bg-accent-primary group-hover:text-white transition-all duration-500"
-              >
+              <span class="font-mono text-muted-dark text-sm">01</span>
+              <div class="w-10 h-10 rounded-full bg-ochre/10 flex items-center justify-center text-ochre group-hover:bg-ochre group-hover:text-ink transition-all duration-500">
                 <i class="fa-solid fa-arrow-up-right-from-square"></i>
               </div>
             </div>
-            <h3
-              class="font-display text-2xl font-bold mb-4 group-hover:text-accent-primary transition-colors"
-            >
-              GymBro
-            </h3>
+            <h3 class="font-display text-2xl font-semibold mb-4 group-hover:text-ochre transition-colors">GymBro</h3>
             <p class="text-muted text-sm leading-relaxed mb-8 flex-grow">
               A cross-platform fitness app with authentication, workout plans,
               nutrition tracking and BMI/BMR calculators.
             </p>
             <div class="flex flex-wrap gap-2">
-              <span
-                class="px-3 py-1 rounded-full bg-white/5 text-[10px] font-mono text-muted uppercase"
-                >React Native</span
-              >
-              <span
-                class="px-3 py-1 rounded-full bg-white/5 text-[10px] font-mono text-muted uppercase"
-                >Node.js</span
-              >
-              <span
-                class="px-3 py-1 rounded-full bg-white/5 text-[10px] font-mono text-muted uppercase"
-                >MongoDB</span
-              >
+              <span class="px-3 py-1 rounded-full bg-cream/5 text-[10px] font-mono text-muted uppercase">React Native</span>
+              <span class="px-3 py-1 rounded-full bg-cream/5 text-[10px] font-mono text-muted uppercase">Node.js</span>
+              <span class="px-3 py-1 rounded-full bg-cream/5 text-[10px] font-mono text-muted uppercase">MongoDB</span>
             </div>
           </div>
-          <div class="glass-card p-8 rounded-3xl flex flex-col reveal group">
+
+          <div class="tilt card p-8 rounded-3xl flex flex-col reveal group">
             <div class="mb-8 flex justify-between items-start">
-              <span class="font-mono text-muted-darker text-sm">02</span>
-              <div
-                class="w-10 h-10 rounded-full bg-accent-tertiary/10 flex items-center justify-center text-accent-tertiary group-hover:bg-accent-tertiary group-hover:text-white transition-all duration-500"
-              >
+              <span class="font-mono text-muted-dark text-sm">02</span>
+              <div class="w-10 h-10 rounded-full bg-cobalt/10 flex items-center justify-center text-cobalt group-hover:bg-cobalt group-hover:text-ink transition-all duration-500">
                 <i class="fa-solid fa-arrow-up-right-from-square"></i>
               </div>
             </div>
-            <h3
-              class="font-display text-2xl font-bold mb-4 group-hover:text-accent-tertiary transition-colors"
-            >
-              PC Components E-Commerce
-            </h3>
+            <h3 class="font-display text-2xl font-semibold mb-4 group-hover:text-cobalt transition-colors">PC Components E-Commerce</h3>
             <p class="text-muted text-sm leading-relaxed mb-8 flex-grow">
-              A responsive e-commerce platform for PC parts, with
-              authentication, product management and REST APIs.
+              A responsive e-commerce platform for PC parts, with authentication,
+              product management and REST APIs.
             </p>
             <div class="flex flex-wrap gap-2">
-              <span
-                class="px-3 py-1 rounded-full bg-white/5 text-[10px] font-mono text-muted uppercase"
-                >Angular</span
-              >
-              <span
-                class="px-3 py-1 rounded-full bg-white/5 text-[10px] font-mono text-muted uppercase"
-                >PostgreSQL</span
-              >
+              <span class="px-3 py-1 rounded-full bg-cream/5 text-[10px] font-mono text-muted uppercase">Angular</span>
+              <span class="px-3 py-1 rounded-full bg-cream/5 text-[10px] font-mono text-muted uppercase">PostgreSQL</span>
             </div>
           </div>
-          <div class="glass-card p-8 rounded-3xl flex flex-col reveal group">
+
+          <div class="tilt card p-8 rounded-3xl flex flex-col reveal group">
             <div class="mb-8 flex justify-between items-start">
-              <span class="font-mono text-muted-darker text-sm">03</span>
-              <div
-                class="w-10 h-10 rounded-full bg-accent-secondary/10 flex items-center justify-center text-accent-secondary group-hover:bg-accent-secondary group-hover:text-white transition-all duration-500"
-              >
+              <span class="font-mono text-muted-dark text-sm">03</span>
+              <div class="w-10 h-10 rounded-full bg-sage/10 flex items-center justify-center text-sage group-hover:bg-sage group-hover:text-ink transition-all duration-500">
                 <i class="fa-solid fa-arrow-up-right-from-square"></i>
               </div>
             </div>
-            <h3
-              class="font-display text-2xl font-bold mb-4 group-hover:text-accent-secondary transition-colors"
-            >
-              Freelance builds
-            </h3>
+            <h3 class="font-display text-2xl font-semibold mb-4 group-hover:text-sage transition-colors">Freelance builds</h3>
             <p class="text-muted text-sm leading-relaxed mb-8 flex-grow">
-              An ongoing run of client and personal projects — RESTful APIs,
-              auth, and CRUD flows shipped across web and mobile.
+              An ongoing run of client and personal projects — RESTful APIs, auth,
+              and CRUD flows shipped across web and mobile.
             </p>
             <div class="flex flex-wrap gap-2">
-              <span
-                class="px-3 py-1 rounded-full bg-white/5 text-[10px] font-mono text-muted uppercase"
-                >React</span
-              >
-              <span
-                class="px-3 py-1 rounded-full bg-white/5 text-[10px] font-mono text-muted uppercase"
-                >Express</span
-              >
+              <span class="px-3 py-1 rounded-full bg-cream/5 text-[10px] font-mono text-muted uppercase">React</span>
+              <span class="px-3 py-1 rounded-full bg-cream/5 text-[10px] font-mono text-muted uppercase">Express</span>
             </div>
           </div>
         </div>
@@ -648,120 +445,61 @@
       <!-- CONTACT -->
       <section id="contact" class="py-32 px-6 max-w-7xl mx-auto">
         <div class="mb-16 reveal">
-          <span
-            class="font-mono text-accent-primary text-sm tracking-[0.3em] uppercase mb-4 block"
-            >./contact --me</span
-          >
-          <h2 class="font-display text-4xl md:text-6xl font-bold text-gradient">
-            Let's Talk.
-          </h2>
+          <span class="font-mono text-ochre text-sm tracking-[0.3em] uppercase mb-4 block">04 — ./contact --me</span>
+          <h2 class="font-display text-4xl md:text-6xl font-semibold text-clay">Let's talk.</h2>
         </div>
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
           <div class="reveal">
             <p class="text-muted text-lg mb-12">
               Have a project in mind, or just want to say hi? My inbox is open.
-              I'm always interested in hearing about new projects and
-              opportunities.
+              I'm always interested in hearing about new projects and opportunities.
             </p>
             <div class="space-y-8">
               <div class="flex items-center gap-6 group">
-                <div
-                  class="w-14 h-14 rounded-2xl bg-surface border border-white/5 flex items-center justify-center text-accent-primary text-xl group-hover:bg-accent-primary group-hover:text-white transition-all duration-500"
-                >
+                <div class="w-14 h-14 rounded-2xl bg-surface border border-cream/5 flex items-center justify-center text-ochre text-xl group-hover:bg-ochre group-hover:text-ink transition-all duration-500">
                   <i class="fa-solid fa-envelope"></i>
                 </div>
                 <div>
-                  <div
-                    class="text-[10px] font-mono text-muted-darker uppercase tracking-widest mb-1"
-                  >
-                    Email Me
-                  </div>
-                  <a
-                    href="mailto:iheb.trabelsi.gd@gmail.com"
-                    class="text-lg font-medium hover:text-accent-primary transition-colors"
-                    >iheb.trabelsi.gd@gmail.com</a
-                  >
+                  <div class="text-[10px] font-mono text-muted-dark uppercase tracking-widest mb-1">Email me</div>
+                  <a href="mailto:iheb.trabelsi.gd@gmail.com" class="text-lg font-medium hover:text-ochre transition-colors">iheb.trabelsi.gd@gmail.com</a>
                 </div>
               </div>
               <div class="flex items-center gap-6 group">
-                <div
-                  class="w-14 h-14 rounded-2xl bg-surface border border-white/5 flex items-center justify-center text-accent-tertiary text-xl group-hover:bg-accent-tertiary group-hover:text-white transition-all duration-500"
-                >
+                <div class="w-14 h-14 rounded-2xl bg-surface border border-cream/5 flex items-center justify-center text-cobalt text-xl group-hover:bg-cobalt group-hover:text-ink transition-all duration-500">
                   <i class="fa-solid fa-phone"></i>
                 </div>
                 <div>
-                  <div
-                    class="text-[10px] font-mono text-muted-darker uppercase tracking-widest mb-1"
-                  >
-                    Call Me
-                  </div>
-                  <a
-                    href="tel:+21624871233"
-                    class="text-lg font-medium hover:text-accent-tertiary transition-colors"
-                    >+216 24 871 233</a
-                  >
+                  <div class="text-[10px] font-mono text-muted-dark uppercase tracking-widest mb-1">Call me</div>
+                  <a href="tel:+21624871233" class="text-lg font-medium hover:text-cobalt transition-colors">+216 24 871 233</a>
                 </div>
               </div>
               <div class="flex items-center gap-6 group">
-                <div
-                  class="w-14 h-14 rounded-2xl bg-surface border border-white/5 flex items-center justify-center text-accent-secondary text-xl group-hover:bg-accent-secondary group-hover:text-white transition-all duration-500"
-                >
+                <div class="w-14 h-14 rounded-2xl bg-surface border border-cream/5 flex items-center justify-center text-sage text-xl group-hover:bg-sage group-hover:text-ink transition-all duration-500">
                   <i class="fa-solid fa-location-dot"></i>
                 </div>
                 <div>
-                  <div
-                    class="text-[10px] font-mono text-muted-darker uppercase tracking-widest mb-1"
-                  >
-                    Location
-                  </div>
+                  <div class="text-[10px] font-mono text-muted-dark uppercase tracking-widest mb-1">Location</div>
                   <span class="text-lg font-medium">Nabeul, Tunisia</span>
                 </div>
               </div>
             </div>
           </div>
           <div class="reveal">
-            <form
-              onsubmit="return false;"
-              class="glass-card p-10 rounded-3xl space-y-6"
-            >
+            <form onsubmit="return false;" class="card p-10 rounded-3xl space-y-6">
               <div class="space-y-2">
-                <label
-                  class="text-[10px] font-mono text-muted-darker uppercase tracking-widest ml-1"
-                  >Your Name</label
-                >
-                <input
-                  type="text"
-                  placeholder="John Doe"
-                  class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 outline-none focus:border-accent-primary/50 transition-colors text-white"
-                />
+                <label class="text-[10px] font-mono text-muted-dark uppercase tracking-widest ml-1">Your name</label>
+                <input type="text" placeholder="John Doe" class="w-full bg-cream/5 border border-cream/10 rounded-xl px-6 py-4 outline-none focus:border-ochre/50 transition-colors text-cream" />
               </div>
               <div class="space-y-2">
-                <label
-                  class="text-[10px] font-mono text-muted-darker uppercase tracking-widest ml-1"
-                  >Email Address</label
-                >
-                <input
-                  type="email"
-                  placeholder="john@example.com"
-                  class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 outline-none focus:border-accent-primary/50 transition-colors text-white"
-                />
+                <label class="text-[10px] font-mono text-muted-dark uppercase tracking-widest ml-1">Email address</label>
+                <input type="email" placeholder="john@example.com" class="w-full bg-cream/5 border border-cream/10 rounded-xl px-6 py-4 outline-none focus:border-ochre/50 transition-colors text-cream" />
               </div>
               <div class="space-y-2">
-                <label
-                  class="text-[10px] font-mono text-muted-darker uppercase tracking-widest ml-1"
-                  >Your Message</label
-                >
-                <textarea
-                  rows="4"
-                  placeholder="Tell me about your project..."
-                  class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 outline-none focus:border-accent-primary/50 transition-colors text-white resize-none"
-                ></textarea>
+                <label class="text-[10px] font-mono text-muted-dark uppercase tracking-widest ml-1">Your message</label>
+                <textarea rows="4" placeholder="Tell me about your project..." class="w-full bg-cream/5 border border-cream/10 rounded-xl px-6 py-4 outline-none focus:border-ochre/50 transition-colors text-cream resize-none"></textarea>
               </div>
-              <button
-                type="submit"
-                class="w-full magnetic bg-white text-dark font-bold py-5 rounded-xl hover:bg-accent-primary hover:text-white transition-all duration-500 shadow-xl shadow-accent-primary/10"
-              >
-                Send Message <i class="fa-solid fa-paper-plane ml-2"></i>
+              <button type="submit" class="w-full magnetic bg-cream text-ink font-bold py-5 rounded-xl hover:bg-ochre transition-all duration-500 shadow-xl shadow-ochre/10">
+                Send message <i class="fa-solid fa-paper-plane ml-2"></i>
               </button>
             </form>
           </div>
@@ -769,155 +507,141 @@
       </section>
     </main>
 
-    <!-- ===== FOOTER ===== -->
-    <footer
-      class="py-20 px-6 border-t border-white/5 text-center relative z-10 overflow-hidden"
-    >
+    <footer class="py-20 px-6 border-t border-cream/5 text-center relative z-10">
       <div class="max-w-7xl mx-auto">
-<div class="flex justify-center gap-8 mb-12 text-2xl text-muted-darker">
-  <a href="https://www.linkedin.com/in/iheb-trabelsi" target="_blank" class="hover:text-accent-primary transition-all hover:scale-110"><i class="fa-brands fa-linkedin"></i></a>
-  <a href="https://github.com/IhebTrabelsii" target="_blank" class="hover:text-white transition-all hover:scale-110"><i class="fa-brands fa-github"></i></a>
-  <a href="https://www.behance.net/ihebtrabelsi1" target="_blank" class="hover:text-accent-secondary transition-all hover:scale-110"><i class="fa-brands fa-behance"></i></a>
-</div>
-        <p class="font-mono text-muted-darker text-sm tracking-tighter">
-          &copy; 2026 Iheb Trabelsi. Redesigned with
-          <span class="text-accent-primary animate-pulse-slow">♥</span> for a
-          premium experience.
+        <div class="flex justify-center gap-8 mb-12 text-2xl text-muted-dark">
+          <a href="https://www.linkedin.com/in/iheb-trabelsi-b71ba841b/" target="_blank" class="hover:text-cobalt transition-all hover:scale-110"><i class="fa-brands fa-linkedin"></i></a>
+          <a href="https://github.com/IhebTrabelsii" target="_blank" class="hover:text-cream transition-all hover:scale-110"><i class="fa-brands fa-github"></i></a>
+          <a href="https://www.behance.net/ihebtrabelsi1" target="_blank" class="hover:text-ochre transition-all hover:scale-110"><i class="fa-brands fa-behance"></i></a>
+        </div>
+        <p class="font-mono text-muted-dark text-sm tracking-tight">
+          &copy; 2026 Iheb Trabelsi. Shaped, glazed, and fired in Nabeul.
         </p>
       </div>
     </footer>
 
-    <!-- ===== JAVASCRIPT ===== -->
     <script>
       // --- Typewriter ---
-      const roles = [
-        "Full Stack Developer",
-        "React Native Developer",
-        "Web Developer",
-        "API Builder",
-      ];
+      const roles = ["Full Stack Developer", "React Native Developer", "Web Developer", "API Builder"];
       const twEl = document.getElementById("typewriter");
-      let rIdx = 0,
-        cIdx = 0,
-        deleting = false;
-
+      let rIdx = 0, cIdx = 0, deleting = false;
       function typeLoop() {
         const word = roles[rIdx];
         if (!deleting) {
-          cIdx++;
-          twEl.textContent = word.slice(0, cIdx);
-          if (cIdx === word.length) {
-            deleting = true;
-            setTimeout(typeLoop, 2000);
-            return;
-          }
+          cIdx++; twEl.textContent = word.slice(0, cIdx);
+          if (cIdx === word.length) { deleting = true; setTimeout(typeLoop, 2000); return; }
         } else {
-          cIdx--;
-          twEl.textContent = word.slice(0, cIdx);
-          if (cIdx === 0) {
-            deleting = false;
-            rIdx = (rIdx + 1) % roles.length;
-          }
+          cIdx--; twEl.textContent = word.slice(0, cIdx);
+          if (cIdx === 0) { deleting = false; rIdx = (rIdx + 1) % roles.length; }
         }
-        setTimeout(typeLoop, deleting ? 50 : 100);
+        setTimeout(typeLoop, deleting ? 45 : 95);
       }
       window.addEventListener("load", typeLoop);
 
-      // --- Terminal ---
+      // --- Custom cursor (transform-based, no layout thrash) ---
+      const dot = document.getElementById("cursor-dot");
+      const ring = document.getElementById("cursor-ring");
+      let mx = 0, my = 0, rx = 0, ry = 0;
+      window.addEventListener("mousemove", (e) => {
+        mx = e.clientX; my = e.clientY;
+        dot.style.transform = `translate3d(${mx}px, ${my}px, 0) translate(-50%, -50%)`;
+      }, { passive: true });
+      function ringLoop() {
+        rx += (mx - rx) * 0.2; ry += (my - ry) * 0.2;
+        ring.style.transform = `translate3d(${rx}px, ${ry}px, 0) translate(-50%, -50%)`;
+        requestAnimationFrame(ringLoop);
+      }
+      ringLoop();
+      document.querySelectorAll("a, button, input, textarea, .tilt").forEach((el) => {
+        el.addEventListener("mouseenter", () => document.body.classList.add("cursor-grow"));
+        el.addEventListener("mouseleave", () => document.body.classList.remove("cursor-grow"));
+      });
+
+      // --- Terminal typing effect ---
       const termBody = document.getElementById("terminal-body");
       const codeLines = [
         { t: "const ", c: "term-key" },
         { t: "developer", c: "" },
         { t: " = {\n", c: "" },
-        { t: "  name", c: "term-key" },
-        { t: ": ", c: "" },
-        { t: "'Iheb Trabelsi'", c: "term-str" },
-        { t: ",\n", c: "" },
-        { t: "  stack", c: "term-key" },
-        { t: ": [", c: "" },
-        { t: "'React'", c: "term-str" },
-        { t: ", ", c: "" },
-        { t: "'Node.js'", c: "term-str" },
-        { t: ", ", c: "" },
-        { t: "'PostgreSQL'", c: "term-str" },
-        { t: "],\n", c: "" },
-        { t: "  based", c: "term-key" },
-        { t: ": ", c: "" },
-        { t: "'Tunisia'", c: "term-str" },
-        { t: ",\n", c: "" },
-        { t: "  isShipping", c: "term-key" },
-        { t: ": ", c: "" },
-        { t: "true", c: "term-fn" },
-        { t: "\n", c: "" },
+        { t: "  name", c: "term-key" }, { t: ": ", c: "" }, { t: "'Iheb Trabelsi'", c: "term-str" }, { t: ",\n", c: "" },
+        { t: "  stack", c: "term-key" }, { t: ": [", c: "" },
+        { t: "'React'", c: "term-str" }, { t: ", ", c: "" },
+        { t: "'Node.js'", c: "term-str" }, { t: ", ", c: "" },
+        { t: "'PostgreSQL'", c: "term-str" }, { t: "],\n", c: "" },
+        { t: "  based", c: "term-key" }, { t: ": ", c: "" }, { t: "'Tunisia'", c: "term-str" }, { t: ",\n", c: "" },
+        { t: "  isShipping", c: "term-key" }, { t: ": ", c: "" }, { t: "true", c: "term-fn" }, { t: "\n", c: "" },
         { t: "};", c: "" },
       ];
-      let i = 0,
-        fullHtml = "";
-
+      let ci = 0, fullHtml = "";
       function stepTerminal() {
-        if (i < codeLines.length) {
-          const line = codeLines[i];
-          const content = line.c
-            ? `<span class="${line.c}">${line.t}</span>`
-            : line.t;
-          fullHtml += content;
-          termBody.innerHTML =
-            fullHtml.replace(/\n/g, "<br>") +
-            '<span class="w-2 h-4 inline-block align-middle bg-accent-tertiary ml-1 animate-pulse"></span>';
-          i++;
+        if (ci < codeLines.length) {
+          const line = codeLines[ci];
+          fullHtml += line.c ? `<span class="${line.c}">${line.t}</span>` : line.t;
+          termBody.innerHTML = fullHtml.replace(/\n/g, "<br>") + '<span class="w-2 h-4 inline-block align-middle bg-cobalt ml-1 animate-pulse"></span>';
+          ci++;
           setTimeout(stepTerminal, 80);
         }
       }
-      setTimeout(stepTerminal, 1000);
+      setTimeout(stepTerminal, 900);
 
-      // --- Scroll Reveal ---
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("active");
-              observer.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.1, rootMargin: "0px 0px -50px 0px" },
-      );
-      document
-        .querySelectorAll(".reveal")
-        .forEach((el) => observer.observe(el));
+      // --- Scroll progress + parallax blobs ---
+      const bar = document.getElementById("scroll-bar");
+      const blob1 = document.getElementById("blob1");
+      const blob2 = document.getElementById("blob2");
+      const blob3 = document.getElementById("blob3");
+      window.addEventListener("scroll", () => {
+        const h = document.documentElement;
+        const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+        bar.style.width = pct + "%";
+        const y = h.scrollTop;
+        blob1.style.transform = `translateY(${y * 0.15}px)`;
+        blob2.style.transform = `translateY(${y * -0.1}px)`;
+        blob3.style.transform = `translateY(${y * 0.08}px)`;
+      });
+
+      // --- Scroll reveal with stagger ---
+      const revealEls = document.querySelectorAll(".reveal:not(.active)");
+      const groups = {};
+      revealEls.forEach((el) => {
+        const parent = el.parentElement;
+        if (!groups[parent]) groups[parent] = [];
+        groups[parent].push(el);
+      });
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const siblings = groups[entry.target.parentElement] || [entry.target];
+            const idx = siblings.indexOf(entry.target);
+            entry.target.style.transitionDelay = (idx * 0.08) + "s";
+            entry.target.classList.add("active");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: "0px 0px -60px 0px" });
+      revealEls.forEach((el) => observer.observe(el));
 
       // --- Counters ---
-      const counterObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              const el = entry.target;
-              const target = parseInt(el.getAttribute("data-target"));
-              const suffix = el.getAttribute("data-suffix") || "";
-              let count = 0;
-              const increment = target / (1500 / 16);
+      const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const el = entry.target;
+            const target = parseInt(el.getAttribute("data-target"));
+            const suffix = el.getAttribute("data-suffix") || "";
+            let count = 0;
+            const increment = target / (1500 / 16);
+            const updateCount = () => {
+              count += increment;
+              if (count < target) { el.textContent = Math.round(count) + suffix; requestAnimationFrame(updateCount); }
+              else { el.textContent = target + suffix; }
+            };
+            updateCount();
+            counterObserver.unobserve(el);
+          }
+        });
+      }, { threshold: 0.5 });
+      document.querySelectorAll(".counter-num").forEach((c) => counterObserver.observe(c));
 
-              const updateCount = () => {
-                count += increment;
-                if (count < target) {
-                  el.textContent = Math.round(count) + suffix;
-                  requestAnimationFrame(updateCount);
-                } else {
-                  el.textContent = target + suffix;
-                }
-              };
-              updateCount();
-              counterObserver.unobserve(el);
-            }
-          });
-        },
-        { threshold: 0.5 },
-      );
-      document
-        .querySelectorAll(".counter-num")
-        .forEach((counter) => counterObserver.observe(counter));
-
-      // --- Magnetic Buttons ---
+      // --- Magnetic buttons ---
       document.querySelectorAll(".magnetic").forEach((btn) => {
         btn.addEventListener("mousemove", (e) => {
           const rect = btn.getBoundingClientRect();
@@ -925,34 +649,41 @@
           const y = e.clientY - rect.top - rect.height / 2;
           btn.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
         });
-        btn.addEventListener("mouseleave", () => {
-          btn.style.transform = "translate(0, 0)";
-        });
+        btn.addEventListener("mouseleave", () => { btn.style.transform = "translate(0, 0)"; });
       });
 
-      // --- Header Blur ---
+      // --- Card tilt ---
+      document.querySelectorAll(".tilt").forEach((card) => {
+        card.addEventListener("mousemove", (e) => {
+          const rect = card.getBoundingClientRect();
+          const px = (e.clientX - rect.left) / rect.width - 0.5;
+          const py = (e.clientY - rect.top) / rect.height - 0.5;
+          card.style.transform = `perspective(800px) rotateX(${py * -6}deg) rotateY(${px * 6}deg) translateY(-4px)`;
+        });
+        card.addEventListener("mouseleave", () => { card.style.transform = "perspective(800px) rotateX(0) rotateY(0) translateY(0)"; });
+      });
+
+      // --- Header blur ---
       window.addEventListener("scroll", () => {
         const header = document.getElementById("header");
-        if (window.scrollY > 50) {
-          header.classList.add("glass", "h-16");
-          header.classList.remove("h-20");
-        } else {
-          header.classList.remove("glass", "h-16");
-          header.classList.add("h-20");
-        }
+        if (window.scrollY > 50) { header.classList.add("glass", "h-16"); header.classList.remove("h-20"); }
+        else { header.classList.remove("glass", "h-16"); header.classList.add("h-20"); }
       });
 
-      // --- Parallax Orbs ---
-      window.addEventListener("mousemove", (e) => {
-        const x = e.clientX / window.innerWidth;
-        const y = e.clientY / window.innerHeight;
-        document.querySelectorAll(".orb").forEach((orb, idx) => {
-          const factor = (idx + 1) * 20;
-          orb.style.transform = `translate(${x * factor}px, ${y * factor}px)`;
+      // --- Scrollspy ---
+      const navLinks = document.querySelectorAll("[data-nav]");
+      const sections = [...navLinks].map((l) => document.querySelector(l.getAttribute("href")));
+      const spy = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = "#" + entry.target.id;
+            navLinks.forEach((l) => l.classList.toggle("active", l.getAttribute("href") === id));
+          }
         });
-      });
+      }, { threshold: 0.5, rootMargin: "-30% 0px -50% 0px" });
+      sections.forEach((s) => s && spy.observe(s));
 
-      // --- Mobile Menu ---
+      // --- Mobile menu ---
       const menuToggle = document.getElementById("menu-toggle");
       const navbar = document.getElementById("navbar");
       menuToggle.addEventListener("click", () => {
@@ -962,7 +693,7 @@
         navbar.classList.toggle("top-20");
         navbar.classList.toggle("left-0");
         navbar.classList.toggle("w-full");
-        navbar.classList.toggle("bg-dark");
+        navbar.classList.toggle("bg-ink");
         navbar.classList.toggle("p-6");
         navbar.classList.toggle("flex-col");
       });

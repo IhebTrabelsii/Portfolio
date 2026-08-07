@@ -22,6 +22,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     <script>
+      
       tailwind.config = {
         theme: {
           extend: {
@@ -62,6 +63,29 @@
         color: #f3e9d6;
         font-family: "Inter", sans-serif;
       }
+/* Decorative underline for Behance text */
+.behance-underline {
+  position: relative;
+}
+.behance-underline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #DDA84A, transparent);
+  border-radius: 2px;
+}
+
+/* Gentle float animation for the Behance icon */
+@keyframes float-icon {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+.behance-icon {
+  animation: float-icon 3s ease-in-out infinite;
+}
       ::-webkit-scrollbar {
         width: 8px;
       }
@@ -383,6 +407,17 @@
       }
     </style>
   </head>
+  <!-- ===== FORMSPREE AJAX ===== -->
+<script>
+  window.formspree = window.formspree || function () {
+    (formspree.q = formspree.q || []).push(arguments);
+  };
+  formspree('initForm', {
+    formElement: '#contact-form',
+    formId: 'mljrgekr'
+  });
+</script>
+<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
   <body>
     <svg style="display: none">
       <filter id="grainFilter">
@@ -1194,7 +1229,29 @@
           </div>
         </div>
       </section>
-
+<section class="py-32 px-6 max-w-5xl mx-auto">
+  <div class="card p-12 md:p-16 rounded-3xl text-center reveal hover:border-ochre/30 transition-all duration-500 group">
+    <div class="max-w-2xl mx-auto">
+      <div class="w-20 h-20 mx-auto rounded-full bg-ochre/10 flex items-center justify-center text-4xl text-ochre mb-8 group-hover:scale-110 group-hover:bg-ochre group-hover:text-ink transition-all duration-500">
+        <i class="fa-brands fa-behance"></i>
+      </div>
+      <h2 class="font-display text-3xl md:text-5xl font-semibold text-clay leading-[1.2]">
+        See my work on
+        <span class="text-glaze">Behance</span>
+      </h2>
+      <p class="text-muted text-lg mt-6 leading-relaxed">
+        A visual overview of my projects — from UI design to creative direction.
+      </p>
+      <a href="https://www.behance.net/ihebtrabelsi1" 
+         target="_blank" 
+         rel="noopener noreferrer"
+         class="inline-flex items-center gap-3 mt-10 px-8 py-4 rounded-full bg-ochre/10 text-ochre font-mono text-sm uppercase tracking-widest hover:bg-ochre hover:text-ink transition-all duration-500 group">
+        <span>Explore Behance</span>
+        <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+      </a>
+    </div>
+  </div>
+</section>
       <!-- CONTACT -->
       <section id="contact" class="py-32 px-6 max-w-7xl mx-auto">
         <div class="mb-16 reveal">
@@ -1283,80 +1340,73 @@
             </div>
           </div>
           <div class="reveal">
-            <form
-              id="contact-form"
-              class="card p-10 rounded-3xl space-y-6"
-              novalidate
-            >
-              <p
-                id="form-status"
-                class="hidden text-sm font-mono text-sage"
-                role="status"
-                aria-live="polite"
-              ></p>
-              <div class="space-y-2">
-                <label
-                  for="cf-name"
-                  class="text-[10px] font-mono text-muted-dark uppercase tracking-widest ml-1 rtl:ml-0 rtl:mr-1"
-                  data-i18n="contact.nameLabel"
-                  >Your name</label
-                >
-                <input
-                  id="cf-name"
-                  name="name"
-                  type="text"
-                  required
-                  data-i18n="contact.namePlaceholder"
-                  placeholder="John Doe"
-                  class="w-full bg-cream/5 border border-cream/10 rounded-xl px-6 py-4 outline-none focus:border-ochre/50 transition-colors text-cream"
-                />
-              </div>
-              <div class="space-y-2">
-                <label
-                  for="cf-email"
-                  class="text-[10px] font-mono text-muted-dark uppercase tracking-widest ml-1 rtl:ml-0 rtl:mr-1"
-                  data-i18n="contact.emailLabelForm"
-                  >Email address</label
-                >
-                <input
-                  id="cf-email"
-                  name="email"
-                  type="email"
-                  required
-                  data-i18n="contact.emailPlaceholder"
-                  placeholder="john@example.com"
-                  class="w-full bg-cream/5 border border-cream/10 rounded-xl px-6 py-4 outline-none focus:border-ochre/50 transition-colors text-cream"
-                  dir="ltr"
-                />
-              </div>
-              <div class="space-y-2">
-                <label
-                  for="cf-message"
-                  class="text-[10px] font-mono text-muted-dark uppercase tracking-widest ml-1 rtl:ml-0 rtl:mr-1"
-                  data-i18n="contact.messageLabel"
-                  >Your message</label
-                >
-                <textarea
-                  id="cf-message"
-                  name="message"
-                  rows="4"
-                  required
-                  data-i18n="contact.messagePlaceholder"
-                  placeholder="Tell me about your project..."
-                  class="w-full bg-cream/5 border border-cream/10 rounded-xl px-6 py-4 outline-none focus:border-ochre/50 transition-colors text-cream resize-none"
-                ></textarea>
-              </div>
-              <button
-                type="submit"
-                class="w-full magnetic bg-cream text-ink font-bold py-5 rounded-xl hover:bg-ochre transition-all duration-500 shadow-xl shadow-ochre/10"
-              >
-                <span data-i18n="contact.submit">Send message</span>
-                <i
-                  class="fa-solid fa-paper-plane ml-2 rtl:ml-0 rtl:mr-2"
-                  aria-hidden="true"
-                ></i>
-              </button>
-            </form>
+<form
+  id="contact-form"
+  class="card p-10 rounded-3xl space-y-6"
+  novalidate
+>
+  <!-- Success message container -->
+  <div data-fs-success class="hidden text-sm font-mono text-sage" role="status" aria-live="polite"></div>
+
+  <!-- Name field -->
+  <div class="space-y-2">
+    <label for="cf-name" class="text-[10px] font-mono text-muted-dark uppercase tracking-widest ml-1 rtl:ml-0 rtl:mr-1" data-i18n="contact.nameLabel">Your name</label>
+    <input
+      id="cf-name"
+      name="name"
+      type="text"
+      required
+      data-i18n="contact.namePlaceholder"
+      placeholder="John Doe"
+      data-fs-field
+      class="w-full bg-cream/5 border border-cream/10 rounded-xl px-6 py-4 outline-none focus:border-ochre/50 transition-colors text-cream"
+    />
+    <span data-fs-error="name" class="text-xs text-red-400 font-mono hidden"></span>
+  </div>
+
+  <!-- Email field -->
+  <div class="space-y-2">
+    <label for="cf-email" class="text-[10px] font-mono text-muted-dark uppercase tracking-widest ml-1 rtl:ml-0 rtl:mr-1" data-i18n="contact.emailLabelForm">Email address</label>
+    <input
+      id="cf-email"
+      name="email"
+      type="email"
+      required
+      data-i18n="contact.emailPlaceholder"
+      placeholder="john@example.com"
+      data-fs-field
+      class="w-full bg-cream/5 border border-cream/10 rounded-xl px-6 py-4 outline-none focus:border-ochre/50 transition-colors text-cream"
+      dir="ltr"
+    />
+    <span data-fs-error="email" class="text-xs text-red-400 font-mono hidden"></span>
+  </div>
+
+  <!-- Message field -->
+  <div class="space-y-2">
+    <label for="cf-message" class="text-[10px] font-mono text-muted-dark uppercase tracking-widest ml-1 rtl:ml-0 rtl:mr-1" data-i18n="contact.messageLabel">Your message</label>
+    <textarea
+      id="cf-message"
+      name="message"
+      rows="4"
+      required
+      data-i18n="contact.messagePlaceholder"
+      placeholder="Tell me about your project..."
+      data-fs-field
+      class="w-full bg-cream/5 border border-cream/10 rounded-xl px-6 py-4 outline-none focus:border-ochre/50 transition-colors text-cream resize-none"
+    ></textarea>
+    <span data-fs-error="message" class="text-xs text-red-400 font-mono hidden"></span>
+  </div>
+
+  <!-- Submit button -->
+  <button
+    type="submit"
+    data-fs-submit-btn
+    class="w-full magnetic bg-cream text-ink font-bold py-5 rounded-xl hover:bg-ochre transition-all duration-500 shadow-xl shadow-ochre/10"
+  >
+    <span data-i18n="contact.submit">Send message</span>
+    <i class="fa-solid fa-paper-plane ml-2 rtl:ml-0 rtl:mr-2" aria-hidden="true"></i>
+  </button>
+</form>
           </div>
         </div>
       </section>
@@ -2089,24 +2139,6 @@
             closeLangDropdown();
             closeMobileMenu();
           }
-        });
-
-        // --- Contact form: build a mailto with what was entered ---
-        const form = document.getElementById("contact-form");
-        const formStatus = document.getElementById("form-status");
-        form.addEventListener("submit", (e) => {
-          e.preventDefault();
-          const name = form.elements["name"].value.trim();
-          const email = form.elements["email"].value.trim();
-          const message = form.elements["message"].value.trim();
-          if (!name || !email || !message) return;
-
-          const subject = encodeURIComponent(`Portfolio contact from ${name}`);
-          const body = encodeURIComponent(`${message}\n\n— ${name} (${email})`);
-          window.location.href = `mailto:iheb.trabelsi.gd@gmail.com?subject=${subject}&body=${body}`;
-
-          formStatus.textContent = getTranslation(currentLang, "contact.sent");
-          formStatus.classList.remove("hidden");
         });
       });
     </script>

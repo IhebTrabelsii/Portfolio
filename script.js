@@ -23,44 +23,43 @@
      KARAOKE CASE STUDY
   ========================================================= */
 
-  const karaokeSlides = [
-    "../assets/work/karaoke/Slide1.JPG",
-    "../assets/work/karaoke/Slide2.JPG",
-    "../assets/work/karaoke/Slide3.JPG",
-    "../assets/work/karaoke/Slide4.JPG",
-    "../assets/work/karaoke/Slide5.JPG",
-    "../assets/work/karaoke/Slide6.JPG",
-    "../assets/work/karaoke/Slide7.JPG",
-    "../assets/work/karaoke/Slide8.JPG",
-    "../assets/work/karaoke/Slide9.JPG",
-    "../assets/work/karaoke/Slide10.JPG",
-    "../assets/work/karaoke/Slide11.JPG",
-    "../assets/work/karaoke/Slide12.JPG",
-    "../assets/work/karaoke/Slide13.JPG",
-  ];
-
-  const gymbroSlides = [
-  "../assets/work/gymbro/Slide1.JPG",
-  "../assets/work/gymbro/Slide2.JPG",
-  "../assets/work/gymbro/Slide3.JPG",
-  "../assets/work/gymbro/Slide4.JPG",
-  "../assets/work/gymbro/Slide5.JPG",
-  "../assets/work/gymbro/Slide6.JPG",
-  "../assets/work/gymbro/Slide7.JPG",
-  "../assets/work/gymbro/Slide8.JPG",
-  "../assets/work/gymbro/Slide9.JPG",
-  "../assets/work/gymbro/Slide10.JPG",
-  "../assets/work/gymbro/Slide11.JPG",
-  "../assets/work/gymbro/Slide12.JPG",
-  "../assets/work/gymbro/Slide13.JPG",
-  "../assets/work/gymbro/Slide14.JPG",
-  "../assets/work/gymbro/Slide15.JPG",
-  "../assets/work/gymbro/Slide16.JPG",
-  "../assets/work/gymbro/Slide17.JPG",
+const karaokeSlides = [
+  "assets/work/karaoke/Slide1.JPG",
+  "assets/work/karaoke/Slide2.JPG",
+  "assets/work/karaoke/Slide3.JPG",
+  "assets/work/karaoke/Slide4.JPG",
+  "assets/work/karaoke/Slide5.JPG",
+  "assets/work/karaoke/Slide6.JPG",
+  "assets/work/karaoke/Slide7.JPG",
+  "assets/work/karaoke/Slide8.JPG",
+  "assets/work/karaoke/Slide9.JPG",
+  "assets/work/karaoke/Slide10.JPG",
+  "assets/work/karaoke/Slide11.JPG",
+  "assets/work/karaoke/Slide12.JPG",
+  "assets/work/karaoke/Slide13.JPG",
 ];
 
+const gymbroSlides = [
+  "assets/work/gymbro/Slide1.JPG",
+  "assets/work/gymbro/Slide2.JPG",
+  "assets/work/gymbro/Slide3.JPG",
+  "assets/work/gymbro/Slide4.JPG",
+  "assets/work/gymbro/Slide5.JPG",
+  "assets/work/gymbro/Slide6.JPG",
+  "assets/work/gymbro/Slide7.JPG",
+  "assets/work/gymbro/Slide8.JPG",
+  "assets/work/gymbro/Slide9.JPG",
+  "assets/work/gymbro/Slide10.JPG",
+  "assets/work/gymbro/Slide11.JPG",
+  "assets/work/gymbro/Slide12.JPG",
+  "assets/work/gymbro/Slide13.JPG",
+  "assets/work/gymbro/Slide14.JPG",
+  "assets/work/gymbro/Slide15.JPG",
+  "assets/work/gymbro/Slide16.JPG",
+  "assets/work/gymbro/Slide17.JPG",
+];
 const fusionScreenshot =
-  "../assets/work/fusion/content.png";
+  "assets/work/fusion/content.png";
 
   const karaokeCard =
     document.getElementById("openKaraoke");

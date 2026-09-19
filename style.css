@@ -64,10 +64,10 @@ i, em, cite, address, dfn, var {
   --rule-on-paper: rgba(10, 2, 4, 0.16);
   --rule-on-ink: rgba(253, 251, 247, 0.16);
 
---display: "Hot Grill", "Space Grotesk", sans-serif;
---serif: "Fraunces", serif;
---sans: "Space Grotesk", sans-serif;
---data: "Fragment Mono", monospace;
+  --display: "Hot Grill", "Space Grotesk", sans-serif;
+  --serif: "Fraunces", serif;
+  --sans: "Space Grotesk", sans-serif;
+  --data: "Fragment Mono", monospace;
 
   --padding: clamp(22px, 4vw, 64px);
 
@@ -1155,6 +1155,7 @@ h2 span {
 /* Shared cover-image treatment (was duplicated across
    .gymbro-visual and .fusion-visual — merged here). */
 .cover-visual {
+  position: relative;
   width: 100%;
   height: 420px;
   overflow: hidden;
@@ -1172,6 +1173,7 @@ h2 span {
 }
 
 .karaoke-visual {
+  position: relative;
   min-height: 60vh;
   display: flex;
   align-items: center;
@@ -1968,13 +1970,11 @@ body.nav-dark .presentation-button:hover {
 }
 
 /* =========================================================
-   PROJECT CARD AFFORDANCE
-   Two complementary signals so it's obvious the cards are
-   interactive — on desktop AND on touch:
-   1. A "View case study" capsule that fades in on hover /
-      focus, and stays visible on touch devices.
-   2. An animated underline under the project name that
-      draws itself on hover / focus.
+   PROJECT CARD — CLICK CIRCLE
+   A circular "EXPLORE" badge anchored to the bottom-left
+   of the image container itself (not the card). Since it's
+   positioned inside the image wrapper, it always sits over
+   the image regardless of layout or screen size.
 ========================================================= */
 
 .clickable-project {
@@ -1982,149 +1982,15 @@ body.nav-dark .presentation-button:hover {
   cursor: pointer;
 }
 
-/* --- 1. "View case study" capsule --- */
-
-.clickable-project::after {
-  content: "View case study";
-
-  position: absolute;
-  top: 22px;
-  right: 22px;
-
-  padding: 8px 16px;
-
-  background: var(--accent);
-  color: var(--paper);
-
-  font-family: var(--sans);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-
-  white-space: nowrap;
-
-  opacity: 0;
-  transform: translateY(-8px);
-
-  transition:
-    opacity 0.35s var(--ease),
-    transform 0.45s var(--ease);
-
-  pointer-events: none;
-
-  z-index: 6;
-}
-
-.clickable-project:hover::after,
-.clickable-project:focus-visible::after {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* --- 2. Animated underline under the project name --- */
-
-.project-info h2 {
-  position: relative;
-  display: inline-block;
-}
-
-.project-info h2::after {
-  content: "";
-
-  position: absolute;
-  left: 50%;
-  bottom: -8px;
-
-  width: 0;
-  height: 3px;
-
-  background: var(--accent);
-
-  transform: translateX(-50%);
-
-  transition: width 0.55s var(--ease);
-
-  pointer-events: none;
-}
-
-.clickable-project:hover .project-info h2::after,
-.clickable-project:focus-visible .project-info h2::after {
-  width: 60%;
-}
-/* --- Touch devices: no hover, so keep the capsule visible --- */
-
-/* =========================================================
-   TOUCH / MOBILE — always show the capsule
-   Two selectors so it fires on every touch device:
-   - @media (hover: none)     → no hover capability
-   - @media (pointer: coarse) → stylus/finger primary input
-========================================================= */
-
-@media (hover: none), (pointer: coarse) {
-  .clickable-project::after {
-    opacity: 1;
-    transform: translateY(0);
-
-    /* Ensure it sits above the cover image on every device */
-    z-index: 10;
-  }
-}
-
-/* Mobile sizing — capsule sits below the project title,
-   not over the cover image, so it's always legible. */
-
-@media (max-width: 700px) {
-  .clickable-project::after {
-    top: auto;
-    right: auto;
-
-    /* pin it to the bottom of the info block */
-    position: static;
-    display: inline-block;
-
-    margin-top: 20px;
-
-    padding: 8px 14px;
-
-    font-size: 10px;
-    letter-spacing: 0.03em;
-
-    opacity: 1;
-    transform: none;
-
-    /* remove the hover-driven animation on mobile */
-    transition: none;
-  }
-
-  .project-info h2::after {
-    bottom: -5px;
-    height: 2px;
-  }
-}
-
-/* =========================================================
-   PROJECT CARD — CLICK CIRCLE
-   A circular "click me" badge in Hot Grill. Always visible
-   on every device so the affordance never depends on hover.
-========================================================= */
-
-/* =========================================================
-   PROJECT CARD — CLICK CIRCLE
-   Anchored to the card, not to pixel coordinates, so it
-   sits in the same relative spot on desktop and mobile.
-========================================================= */
-
 .click-circle {
   position: absolute;
 
-  /* Anchored to the top-right of the card's info block */
-  top: 50%;
-  right: 6%;
+  /* Bottom-left of the image container */
+  bottom: 20px;
+  left: 20px;
 
-  /* Scale with viewport so it fits every screen */
-  width: clamp(72px, 7vw, 110px);
-  height: clamp(72px, 7vw, 110px);
+  width: clamp(72px, 6vw, 100px);
+  aspect-ratio: 1 / 1;
 
   display: flex;
   align-items: center;
@@ -2135,10 +2001,11 @@ body.nav-dark .presentation-button:hover {
   background: var(--paper);
   color: var(--ink);
 
-  font-family: var(--display);
-  font-size: clamp(11px, 1.1vw, 18px);
-  font-weight: 400;
-  letter-spacing: 0.02em;
+  font-family: var(--sans);
+  font-size: clamp(11px, 1vw, 14px);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 
   line-height: 1;
   text-align: center;
@@ -2149,15 +2016,15 @@ body.nav-dark .presentation-button:hover {
 
   z-index: 10;
 
-  transform: rotate(-8deg) translateY(-50%);
+  transform: rotate(-8deg);
 }
 
 @keyframes clickCirclePulse {
   0%, 100% {
-    transform: rotate(-8deg) translateY(-50%) scale(1);
+    transform: rotate(-8deg) scale(1);
   }
   50% {
-    transform: rotate(-8deg) translateY(-50%) scale(1.06);
+    transform: rotate(-8deg) scale(1.06);
   }
 }
 
@@ -2168,57 +2035,24 @@ body.nav-dark .presentation-button:hover {
   color: var(--ink);
 }
 
-/* =========================================================
-   MOBILE — stacked layout, so re-anchor to the cover image
-   and shrink the circle.
-========================================================= */
+/* --- Small screens: tighter to the corner, slightly smaller --- */
 
-@media (max-width: 900px) {
+@media (max-width: 700px) {
   .click-circle {
-    /* On tablet and below, the card stacks: info on top,
-       image below. Move the circle back to the top-right
-       of the whole card and shrink it. */
-    top: 20px;
-    right: 20px;
+    bottom: 12px;
+    left: 12px;
 
-    width: 80px;
-    height: 80px;
-
-    font-size: 12px;
-
-    transform: rotate(-8deg) translateY(0);
-  }
-
-  @keyframes clickCirclePulse {
-    0%, 100% {
-      transform: rotate(-8deg) translateY(0) scale(1);
-    }
-    50% {
-      transform: rotate(-8deg) translateY(0) scale(1.06);
-    }
-  }
-}
-
-@media (max-width: 600px) {
-  .click-circle {
-    top: 14px;
-    right: 14px;
-
-    width: 68px;
-    height: 68px;
-
-    font-size: 10px;
+    width: clamp(64px, 18vw, 80px);
+    font-size: 11px;
   }
 }
 
 @media (max-width: 400px) {
   .click-circle {
-    top: 10px;
-    right: 10px;
+    bottom: 10px;
+    left: 10px;
 
-    width: 58px;
-    height: 58px;
-
-    font-size: 9px;
+    width: 60px;
+    font-size: 10px;
   }
 }

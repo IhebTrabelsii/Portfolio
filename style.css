@@ -2102,3 +2102,92 @@ body.nav-dark .presentation-button:hover {
     height: 2px;
   }
 }
+
+/* =========================================================
+   PROJECT CARD — CLICK CIRCLE
+   A circular "click me" badge in Hot Grill. Always visible
+   on every device so the affordance never depends on hover.
+========================================================= */
+
+.click-circle {
+  position: absolute;
+
+  /* Anchored to the top-right of the card */
+  top: 320px;
+  right: 620px;
+
+  width: 96px;
+  height: 96px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: var(--paper);
+  color: var(--ink);
+
+  font-family: var(--display);
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+
+  line-height: 1;
+  text-align: center;
+
+  /* Subtle continuous motion so it catches the eye */
+  animation: clickCirclePulse 2.4s var(--ease) infinite;
+
+  /* Doesn't intercept clicks — the whole card handles that */
+  pointer-events: none;
+
+  z-index: 10;
+
+  /* Slight tilt for personality */
+  transform: rotate(-8deg);
+}
+
+@keyframes clickCirclePulse {
+  0%, 100% {
+    transform: rotate(-8deg) scale(1);
+  }
+  50% {
+    transform: rotate(-8deg) scale(1.06);
+  }
+}
+
+/* --- Dark slides: swap colors so it stays readable --- */
+
+.dark-slide .click-circle {
+  background: var(--accent-ink);
+  color: var(--ink);
+}
+
+/* =========================================================
+   MOBILE — reposition and resize so it doesn't crowd
+========================================================= */
+
+@media (max-width: 700px) {
+  .click-circle {
+    top: 14px;
+    right: 14px;
+
+    width: 72px;
+    height: 72px;
+
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 400px) {
+  .click-circle {
+    top: 10px;
+    right: 10px;
+
+    width: 62px;
+    height: 62px;
+
+    font-size: 10px;
+  }
+}

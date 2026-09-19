@@ -1966,3 +1966,139 @@ body.nav-dark .presentation-button:hover {
     width: 100%;
   }
 }
+
+/* =========================================================
+   PROJECT CARD AFFORDANCE
+   Two complementary signals so it's obvious the cards are
+   interactive — on desktop AND on touch:
+   1. A "View case study" capsule that fades in on hover /
+      focus, and stays visible on touch devices.
+   2. An animated underline under the project name that
+      draws itself on hover / focus.
+========================================================= */
+
+.clickable-project {
+  position: relative;
+  cursor: pointer;
+}
+
+/* --- 1. "View case study" capsule --- */
+
+.clickable-project::after {
+  content: "View case study";
+
+  position: absolute;
+  top: 22px;
+  right: 22px;
+
+  padding: 8px 16px;
+
+  background: var(--accent);
+  color: var(--paper);
+
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+
+  white-space: nowrap;
+
+  opacity: 0;
+  transform: translateY(-8px);
+
+  transition:
+    opacity 0.35s var(--ease),
+    transform 0.45s var(--ease);
+
+  pointer-events: none;
+
+  z-index: 6;
+}
+
+.clickable-project:hover::after,
+.clickable-project:focus-visible::after {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- 2. Animated underline under the project name --- */
+
+.project-info h2 {
+  position: relative;
+  display: inline-block;
+}
+
+.project-info h2::after {
+  content: "";
+
+  position: absolute;
+  left: 50%;
+  bottom: -8px;
+
+  width: 0;
+  height: 3px;
+
+  background: var(--accent);
+
+  transform: translateX(-50%);
+
+  transition: width 0.55s var(--ease);
+
+  pointer-events: none;
+}
+
+.clickable-project:hover .project-info h2::after,
+.clickable-project:focus-visible .project-info h2::after {
+  width: 60%;
+}
+/* --- Touch devices: no hover, so keep the capsule visible --- */
+
+/* =========================================================
+   TOUCH / MOBILE — always show the capsule
+   Two selectors so it fires on every touch device:
+   - @media (hover: none)     → no hover capability
+   - @media (pointer: coarse) → stylus/finger primary input
+========================================================= */
+
+@media (hover: none), (pointer: coarse) {
+  .clickable-project::after {
+    opacity: 1;
+    transform: translateY(0);
+
+    /* Ensure it sits above the cover image on every device */
+    z-index: 10;
+  }
+}
+
+/* Mobile sizing — capsule sits below the project title,
+   not over the cover image, so it's always legible. */
+
+@media (max-width: 700px) {
+  .clickable-project::after {
+    top: auto;
+    right: auto;
+
+    /* pin it to the bottom of the info block */
+    position: static;
+    display: inline-block;
+
+    margin-top: 20px;
+
+    padding: 8px 14px;
+
+    font-size: 10px;
+    letter-spacing: 0.03em;
+
+    opacity: 1;
+    transform: none;
+
+    /* remove the hover-driven animation on mobile */
+    transition: none;
+  }
+
+  .project-info h2::after {
+    bottom: -5px;
+    height: 2px;
+  }
+}

@@ -2109,15 +2109,22 @@ body.nav-dark .presentation-button:hover {
    on every device so the affordance never depends on hover.
 ========================================================= */
 
+/* =========================================================
+   PROJECT CARD — CLICK CIRCLE
+   Anchored to the card, not to pixel coordinates, so it
+   sits in the same relative spot on desktop and mobile.
+========================================================= */
+
 .click-circle {
   position: absolute;
 
-  /* Anchored to the top-right of the card */
-  top: 320px;
-  right: 620px;
+  /* Anchored to the top-right of the card's info block */
+  top: 50%;
+  right: 6%;
 
-  width: 96px;
-  height: 96px;
+  /* Scale with viewport so it fits every screen */
+  width: clamp(72px, 7vw, 110px);
+  height: clamp(72px, 7vw, 110px);
 
   display: flex;
   align-items: center;
@@ -2129,31 +2136,28 @@ body.nav-dark .presentation-button:hover {
   color: var(--ink);
 
   font-family: var(--display);
-  font-size: 22px;
+  font-size: clamp(11px, 1.1vw, 18px);
   font-weight: 400;
   letter-spacing: 0.02em;
 
   line-height: 1;
   text-align: center;
 
-  /* Subtle continuous motion so it catches the eye */
   animation: clickCirclePulse 2.4s var(--ease) infinite;
 
-  /* Doesn't intercept clicks — the whole card handles that */
   pointer-events: none;
 
   z-index: 10;
 
-  /* Slight tilt for personality */
-  transform: rotate(-8deg);
+  transform: rotate(-8deg) translateY(-50%);
 }
 
 @keyframes clickCirclePulse {
   0%, 100% {
-    transform: rotate(-8deg) scale(1);
+    transform: rotate(-8deg) translateY(-50%) scale(1);
   }
   50% {
-    transform: rotate(-8deg) scale(1.06);
+    transform: rotate(-8deg) translateY(-50%) scale(1.06);
   }
 }
 
@@ -2165,18 +2169,45 @@ body.nav-dark .presentation-button:hover {
 }
 
 /* =========================================================
-   MOBILE — reposition and resize so it doesn't crowd
+   MOBILE — stacked layout, so re-anchor to the cover image
+   and shrink the circle.
 ========================================================= */
 
-@media (max-width: 700px) {
+@media (max-width: 900px) {
+  .click-circle {
+    /* On tablet and below, the card stacks: info on top,
+       image below. Move the circle back to the top-right
+       of the whole card and shrink it. */
+    top: 20px;
+    right: 20px;
+
+    width: 80px;
+    height: 80px;
+
+    font-size: 12px;
+
+    transform: rotate(-8deg) translateY(0);
+  }
+
+  @keyframes clickCirclePulse {
+    0%, 100% {
+      transform: rotate(-8deg) translateY(0) scale(1);
+    }
+    50% {
+      transform: rotate(-8deg) translateY(0) scale(1.06);
+    }
+  }
+}
+
+@media (max-width: 600px) {
   .click-circle {
     top: 14px;
     right: 14px;
 
-    width: 72px;
-    height: 72px;
+    width: 68px;
+    height: 68px;
 
-    font-size: 11px;
+    font-size: 10px;
   }
 }
 
@@ -2185,9 +2216,9 @@ body.nav-dark .presentation-button:hover {
     top: 10px;
     right: 10px;
 
-    width: 62px;
-    height: 62px;
+    width: 58px;
+    height: 58px;
 
-    font-size: 10px;
+    font-size: 9px;
   }
 }

@@ -1,0 +1,693 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Iheb Trabelsi — Developer / Designer</title>
+
+    <meta
+      name="description"
+      content="Iheb Trabelsi — Full Stack Developer and Designer from Tunisia."
+    />
+
+    <!-- Favicon -->
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png" />
+
+    <!-- Open Graph / social sharing -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Iheb Trabelsi — Developer / Designer" />
+    <meta
+      property="og:description"
+      content="Full Stack Developer and Designer from Tunisia. Web, mobile and interface design."
+    />
+    <meta property="og:image" content="../assets/og-cover.png" />
+    <meta property="og:url" content="https://ihebtrabelsi.dev/" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Iheb Trabelsi — Developer / Designer" />
+    <meta
+      name="twitter:description"
+      content="Full Stack Developer and Designer from Tunisia. Web, mobile and interface design."
+    />
+    <meta name="twitter:image" content="../assets/og-cover.png" />
+
+    <!-- Structured data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Iheb Trabelsi",
+        "jobTitle": "Full Stack Developer / Designer",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Nabeul",
+          "addressCountry": "TN"
+        },
+        "email": "mailto:iheb.trabelsi.gd@gmail.com",
+        "sameAs": [
+          "https://github.com/IhebTrabelsii",
+          "https://www.behance.net/ihebtrabelsi1"
+        ]
+      }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Archivo:wght@400;500;600;700&family=Fragment+Mono&family=Fragment+Mono:ital@1&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+
+    <!--
+      Failsafe: if script.js fails to load or throws before it can remove
+      is-loading, the opening screen would otherwise stay up forever and
+      block the whole site. This inline script clears it on its own after
+      a short timeout, independent of script.js.
+    -->
+    <script>
+      (function () {
+        document.documentElement.classList.add("js");
+        window.addEventListener("load", function () {
+          setTimeout(function () {
+            document.body.classList.remove("is-loading");
+            var opening = document.getElementById("opening");
+            if (opening) opening.classList.add("done");
+          }, 4000);
+        });
+      })();
+    </script>
+
+    <script src="script.js" defer></script>
+  </head>
+
+  <body class="is-loading">
+    <noscript>
+      <style>
+        .opening { display: none !important; }
+        body.is-loading { overflow: visible !important; }
+      </style>
+    </noscript>
+
+    <a class="skip-link" href="#presentation">Skip to content</a>
+
+    <div class="opening" id="opening" aria-hidden="true">
+      <div class="opening-name">
+        <span>Iheb</span>
+        <span>Trabelsi</span>
+      </div>
+    </div>
+
+    <div class="cursor" id="cursor" aria-hidden="true"></div>
+
+    <nav class="nav">
+      <a href="#home" class="nav-brand" data-nav="home">
+        <span>Iheb</span>
+        <span>Trabelsi</span>
+      </a>
+
+      <button
+        class="nav-menu"
+        type="button"
+        aria-label="Toggle navigation"
+        aria-expanded="false"
+        aria-controls="navSections"
+      >
+        <span></span>
+        <span></span>
+      </button>
+
+      <div class="nav-sections" id="navSections">
+        <a href="#about" data-nav="about">About</a>
+        <a href="#skills" data-nav="skills">Skills</a>
+        <a href="#work" data-nav="work">Work</a>
+        <a href="#contact" data-nav="contact">Contact</a>
+      </div>
+    </nav>
+
+    <main class="presentation" id="presentation">
+      <!-- HOME -->
+      <section class="slide hero" id="home">
+        <div class="hero-content">
+          <p class="eyebrow">Full stack developer, designer</p>
+
+          <h1 class="hero-title">
+            <span>I build</span>
+            <span>quiet interfaces.</span>
+          </h1>
+
+          <p class="hero-description">
+            Websites, applications and digital products where engineering
+            meets visual thinking.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#work" class="button magnetic">View my work</a>
+
+            <a
+              href="../assets/Iheb_Trabelsi_ATS.pdf"
+              class="button magnetic"
+              download
+            >
+              Download CV
+            </a>
+          </div>
+        </div>
+
+        <div class="slide-bottom">
+          <span>Nabeul, Tunisia</span>
+          <span>Available for selected work</span>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section class="slide about about-intro" id="about">
+        <div class="content-narrow">
+          <p class="eyebrow">About</p>
+
+          <h2>
+            I like building
+            <span>useful things.</span>
+          </h2>
+
+          <p class="large-copy">
+            I work between development and design, combining technical
+            thinking with a strong interest in how digital products look,
+            feel and behave.
+          </p>
+        </div>
+      </section>
+
+      <section class="slide about about-details">
+        <div class="slide-grid two-column">
+          <div class="text-column">
+            <p class="eyebrow">The person behind the screen</p>
+
+            <p>
+              I enjoy turning ideas into complete digital products, from the
+              first structure and interface to the final implementation.
+            </p>
+
+            <p>
+              My background covers web development, mobile applications,
+              backend systems and visual design.
+            </p>
+
+            <p>
+              I care about clean interfaces, understandable code and
+              experiences that don't feel unnecessarily complicated.
+            </p>
+          </div>
+
+          <div class="facts-grid">
+            <div class="info-card hover-card">
+              <span>Based in</span>
+              <strong>Nabeul, Tunisia</strong>
+            </div>
+
+            <div class="info-card hover-card">
+              <span>Focus</span>
+              <strong>Web, mobile, UI</strong>
+            </div>
+
+            <div class="info-card hover-card">
+              <span>Experience</span>
+              <strong>2+ years</strong>
+            </div>
+
+            <div class="info-card hover-card">
+              <span>Projects</span>
+              <strong>5+</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SKILLS -->
+      <section class="slide dark-slide skills-intro" id="skills">
+        <div class="content-narrow">
+          <p class="eyebrow">Skills</p>
+
+          <h2>
+            The tools
+            <span>behind the work.</span>
+          </h2>
+
+          <p class="large-copy">
+            Tools are useful. Knowing when not to use them is more useful.
+          </p>
+        </div>
+      </section>
+
+      <section class="slide dark-slide skills-slide">
+        <div class="skill-layout">
+          <div class="skill-heading">
+            <span class="skill-index">Development</span>
+            <h2>Frontend</h2>
+          </div>
+
+          <div class="skill-cards">
+            <div class="skill-card hover-card">
+              <strong>React</strong>
+              <span>Web interfaces</span>
+            </div>
+
+            <div class="skill-card hover-card">
+              <strong>React Native</strong>
+              <span>Mobile applications</span>
+            </div>
+
+            <div class="skill-card hover-card">
+              <strong>Angular</strong>
+              <span>Structured web applications</span>
+            </div>
+
+            <div class="skill-card hover-card">
+              <strong>TypeScript</strong>
+              <span>Typed JavaScript</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide dark-slide skills-slide">
+        <div class="skill-layout">
+          <div class="skill-heading">
+            <span class="skill-index">Backend</span>
+            <h2>Systems</h2>
+          </div>
+
+          <div class="skill-cards">
+            <div class="skill-card hover-card">
+              <strong>Node.js</strong>
+              <span>Backend development</span>
+            </div>
+
+            <div class="skill-card hover-card">
+              <strong>Express</strong>
+              <span>APIs and services</span>
+            </div>
+
+            <div class="skill-card hover-card">
+              <strong>MySQL</strong>
+              <span>Relational databases</span>
+            </div>
+
+            <div class="skill-card hover-card">
+              <strong>MongoDB</strong>
+              <span>Document databases</span>
+            </div>
+
+            <div class="skill-card hover-card">
+              <strong>PostgreSQL</strong>
+              <span>Relational databases</span>
+            </div>
+
+            <div class="skill-card hover-card">
+              <strong>Laravel / PHP</strong>
+              <span>Web backend</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide dark-slide skills-slide">
+        <div class="skill-layout">
+          <div class="skill-heading">
+            <span class="skill-index">Design</span>
+            <h2>Visual</h2>
+          </div>
+
+          <div class="skill-cards">
+            <div class="skill-card hover-card">
+              <strong>Photoshop</strong>
+              <span>Visual design</span>
+            </div>
+
+            <div class="skill-card hover-card">
+              <strong>Illustrator</strong>
+              <span>Graphic design</span>
+            </div>
+
+            <div class="skill-card hover-card">
+              <strong>Interface design</strong>
+              <span>UI and composition</span>
+            </div>
+
+            <div class="skill-card hover-card">
+              <strong>UML</strong>
+              <span>System modelling</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- EXPERIENCE -->
+      <section class="slide experience">
+        <div class="slide-grid experience-layout">
+          <div class="experience-heading">
+            <p class="eyebrow">Experience</p>
+
+            <h2>
+              Where I've
+              <span>been.</span>
+            </h2>
+          </div>
+
+          <div class="experience-list">
+            <article class="experience-card hover-card">
+              <div class="experience-date">08/2023 — Current</div>
+
+              <div>
+                <h3>Full Stack Developer</h3>
+                <p>Freelance / Personal Projects</p>
+                <small>Tunisia</small>
+              </div>
+            </article>
+
+            <article class="experience-card hover-card">
+              <div class="experience-date">02/2026 — 07/2026</div>
+
+              <div>
+                <h3>Mobile Developer Intern</h3>
+                <p>DEFENDR</p>
+                <small>Tunisia</small>
+              </div>
+            </article>
+
+            <article class="experience-card hover-card">
+              <div class="experience-date">02/2026 — 07/2026</div>
+
+              <div>
+                <h3>Web Developer Intern</h3>
+                <p>UNITECK</p>
+                <small>Tunisia</small>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- WORK -->
+      <section class="slide work-intro" id="work">
+        <div class="content-narrow">
+          <p class="eyebrow">Selected work</p>
+
+          <h2>
+            Things I've
+            <span>built.</span>
+          </h2>
+
+          <p class="large-copy">
+            A selection of applications and digital products I've built,
+            designed and experimented with.
+          </p>
+        </div>
+      </section>
+
+      <!-- GYMBRO -->
+      <section class="slide project-slide">
+        <article
+          class="project-card clickable-project"
+          id="openGymBro"
+          role="button"
+          tabindex="0"
+          aria-label="Open GymBro project presentation"
+        >
+          <div class="project-info">
+            <p class="project-type">Mobile application</p>
+            <h2>GymBro</h2>
+            <p>
+              A cross-platform fitness application focused on helping users
+              structure and track their training.
+            </p>
+
+            <div class="project-tags">
+              <span>React Native</span>
+              <span>TypeScript</span>
+              <span>Mobile</span>
+            </div>
+          </div>
+
+          <div class="project-visual cover-visual gymbro-visual">
+            <img
+              src="../assets/work/gymbro/cover.png"
+              alt="GymBro app preview"
+              loading="lazy"
+              decoding="async"
+            >
+          </div>
+        </article>
+      </section>
+
+      <!-- FUSION -->
+      <section class="slide project-slide">
+        <article
+          class="project-card clickable-project"
+          id="openFusion"
+          role="button"
+          tabindex="0"
+          aria-label="Open FUSION project presentation"
+        >
+          <div class="project-info">
+            <p class="project-type">Portfolio website</p>
+
+            <h2>FUSION</h2>
+
+            <p>
+              A portfolio website designed for a video editor,
+              combining visual storytelling, motion and a cinematic interface.
+            </p>
+
+            <div class="project-tags">
+              <span>HTML</span>
+              <span>CSS</span>
+              <span>JavaScript</span>
+              <span>Motion</span>
+            </div>
+          </div>
+
+        <div class="project-visual cover-visual fusion-visual">
+          <img
+            src="../assets/work/fusion/cover.png"
+            alt="FUSION portfolio website"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        </article>
+      </section>
+
+      <!-- KARAOKE -->
+      <section class="slide project-slide">
+        <article
+          class="project-card clickable-project"
+          id="openKaraoke"
+          role="button"
+          tabindex="0"
+          aria-label="Open Karaoke project presentation"
+        >
+          <div class="project-info">
+            <p class="project-type">Mobile experience</p>
+
+            <h2>VOXORA</h2>
+
+            <p>
+              A music and singing application built around real-time lyrics,
+              audio interaction and performance.
+            </p>
+
+            <div class="project-tags">
+              <span>React Native</span>
+              <span>Expo</span>
+              <span>TypeScript</span>
+              <span>UX</span>
+            </div>
+          </div>
+
+         <div class="karaoke-visual">
+          <img src="../assets/work/karaoke/cover1.jpg" alt="Karaoke app preview" loading="lazy" decoding="async">
+          <img src="../assets/work/karaoke/cover2.jpg" alt="Karaoke app preview" loading="lazy" decoding="async">
+        </div>
+        </article>
+      </section>
+
+      <!-- WORK ARCHIVE -->
+      <section class="slide work-archive">
+        <div class="content-narrow">
+          <p class="eyebrow">More work</p>
+
+          <h2>
+            Keep
+            <span>exploring.</span>
+          </h2>
+
+          <a
+            href="https://github.com/IhebTrabelsii"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="large-link hover-card"
+          >
+            <span>Open GitHub archive</span>
+            <span>↗</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- DESIGN -->
+      <section class="slide design-slide">
+        <div class="design-content">
+          <p class="eyebrow">Design</p>
+
+          <h2>
+            The other
+            <span>half.</span>
+          </h2>
+
+          <p>
+            Development solves problems. Design decides how people
+            experience the solution.
+          </p>
+
+          <p>
+            I care about typography, composition, rhythm, negative space and
+            movement.
+          </p>
+
+          <a
+            href="https://www.behance.net/ihebtrabelsi1"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="button magnetic"
+          >
+            Explore Behance
+          </a>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section class="slide dark-slide contact-slide" id="contact">
+        <div class="contact-content">
+          <p class="eyebrow">Let's make something</p>
+
+          <h2>
+            Have an
+            <span>idea?</span>
+          </h2>
+
+          <p>
+            If you have a project, an idea or simply want to talk about
+            something interesting, get in touch.
+          </p>
+
+          <a href="mailto:iheb.trabelsi.gd@gmail.com" class="email-link">
+            iheb.trabelsi.gd@gmail.com
+          </a>
+        </div>
+
+        <div class="contact-footer">
+          <span>Nabeul, Tunisia</span>
+          <span id="currentYear"></span>
+          <span>Available for selected work</span>
+        </div>
+      </section>
+    </main>
+
+    <div class="presentation-controls"></div>
+
+    <div class="slide-progress" id="slideProgress"></div>
+
+    <!-- KARAOKE CASE STUDY -->
+    <div
+      class="case-study"
+      id="karaokeCaseStudy"
+      role="dialog"
+      aria-modal="true"
+      aria-label="VOXORA case study"
+      aria-hidden="true"
+    >
+      <button
+        class="case-study-close"
+        id="closeKaraoke"
+        type="button"
+        aria-label="Close"
+      >
+        ×
+      </button>
+
+      <div class="case-study-header">
+        <span>VOXORA</span>
+      </div>
+
+      <div class="case-study-viewer" id="caseStudyViewer">
+        <!-- Slides are inserted here by JavaScript -->
+      </div>
+    </div>
+
+    <!-- GYMBRO CASE STUDY -->
+    <div
+      class="case-study"
+      id="gymbroCaseStudy"
+      role="dialog"
+      aria-modal="true"
+      aria-label="GymBro case study"
+      aria-hidden="true"
+    >
+      <button
+        class="case-study-close"
+        id="closeGymBro"
+        type="button"
+        aria-label="Close"
+      >
+        ×
+      </button>
+
+      <div class="case-study-header">
+        <span>GYMBRO</span>
+      </div>
+
+      <div
+        class="case-study-viewer"
+        id="gymbroCaseStudyViewer"
+      >
+      </div>
+    </div>
+
+
+    <!-- FUSION CASE STUDY -->
+    <div
+      class="case-study"
+      id="fusionCaseStudy"
+      role="dialog"
+      aria-modal="true"
+      aria-label="FUSION case study"
+      aria-hidden="true"
+    >
+      <button
+        class="case-study-close"
+        id="closeFusion"
+        type="button"
+        aria-label="Close"
+      >
+        ×
+      </button>
+
+      <div class="case-study-header">
+        <span>FUSION</span>
+      </div>
+
+      <div
+        class="case-study-viewer"
+        id="fusionCaseStudyViewer"
+      >
+        <!-- Screenshot inserted by JavaScript -->
+      </div>
+    </div>
+
+
+  </body>
+</html>

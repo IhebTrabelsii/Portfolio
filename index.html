@@ -68,18 +68,6 @@
       block the whole site. This inline script clears it on its own after
       a short timeout, independent of script.js.
     -->
-    <script>
-      (function () {
-        document.documentElement.classList.add("js");
-        window.addEventListener("load", function () {
-          setTimeout(function () {
-            document.body.classList.remove("is-loading");
-            var opening = document.getElementById("opening");
-            if (opening) opening.classList.add("done");
-          }, 4000);
-        });
-      })();
-    </script>
 
     <script src="script.js" defer></script>
   </head>

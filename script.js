@@ -113,6 +113,25 @@ const fusionCaseStudyViewer =
 }
 
   /* =========================================================
+     OPENING STATE
+  ========================================================= */
+
+  let openingDone = false;
+
+  function isOpeningActive() {
+    return !openingDone;
+  }
+
+  function finishOpening() {
+    if (openingDone) return;
+
+    openingDone = true;
+
+    opening?.classList.add("done");
+    body.classList.remove("is-loading");
+  }
+
+  /* =========================================================
      FOCUS TRAP (shared by all case-study modals)
   ========================================================= */
 
@@ -188,6 +207,8 @@ const fusionCaseStudyViewer =
   let isTransitioning = false;
   let wheelLocked = false;
 
+  let transitionStartedAt = 0;
+
   let touchStartX = 0;
   let touchStartY = 0;
 
@@ -239,6 +260,7 @@ const fusionCaseStudyViewer =
     if (!oldSlide || !newSlide || !presentation) return;
 
     isTransitioning = true;
+    transitionStartedAt = Date.now();
 
     const transition = getTransition(oldIndex, newIndex);
 
@@ -405,6 +427,8 @@ const fusionCaseStudyViewer =
         (event) => {
           event.preventDefault();
 
+          if (isOpeningActive()) return;
+
           const target = link.dataset.nav;
 
           if (!(target in navTargets)) return;
@@ -448,25 +472,40 @@ const fusionCaseStudyViewer =
 
   function initOpening() {
     if (!opening) {
-      body.classList.remove(
-        "is-loading",
-      );
-
+      body.classList.remove("is-loading");
+      openingDone = true;
       return;
     }
 
-    window.addEventListener(
-      "load",
-      () => {
-        setTimeout(() => {
-          opening.classList.add("done");
+    /*
+      The opening is decorative. It must never wait for
+      window.load, because on a cold cache window.load can
+      take many seconds and the user can already scroll —
+      which would start a presentation transition underneath
+      the opening and leave the site stuck on the first slide.
 
-          body.classList.remove(
-            "is-loading",
-          );
-        }, 2500);
-      },
-    );
+      Start the timer as soon as the DOM is ready.
+    */
+    const begin = () => {
+      setTimeout(finishOpening, 2000);
+    };
+
+    if (document.readyState === "loading") {
+      document.addEventListener(
+        "DOMContentLoaded",
+        begin,
+        { once: true },
+      );
+    } else {
+      begin();
+    }
+
+    /*
+      Absolute failsafe: never let the opening block the
+      site, no matter what happens to the load event,
+      fonts, images or anything else.
+    */
+    setTimeout(finishOpening, 4000);
   }
 
   /* =========================================================
@@ -477,15 +516,8 @@ const fusionCaseStudyViewer =
     window.addEventListener(
       "wheel",
       (event) => {
-        /*
-          Don't control the main presentation
-          while Karaoke is open.
-        */
-
-       if (isCaseStudyOpen()) {
-  return;
-}
-
+        if (isOpeningActive()) return;
+        if (isCaseStudyOpen()) return;
         if (isTransitioning) return;
         if (wheelLocked) return;
 
@@ -519,15 +551,8 @@ const fusionCaseStudyViewer =
     window.addEventListener(
       "keydown",
       (event) => {
-        /*
-          Karaoke has its own Escape behavior.
-          Normal presentation keyboard navigation
-          is disabled while it is open.
-        */
-
-      if (isCaseStudyOpen()) {
-  return;
-}
+        if (isOpeningActive()) return;
+        if (isCaseStudyOpen()) return;
 
         const tag =
           document.activeElement?.tagName;
@@ -582,9 +607,8 @@ const fusionCaseStudyViewer =
     presentation.addEventListener(
       "touchstart",
       (event) => {
-       if (isCaseStudyOpen()) {
-  return;
-}
+        if (isOpeningActive()) return;
+        if (isCaseStudyOpen()) return;
 
         const touch =
           event.changedTouches[0];
@@ -600,10 +624,8 @@ const fusionCaseStudyViewer =
     presentation.addEventListener(
       "touchend",
       (event) => {
-       if (isCaseStudyOpen()) {
-  return;
-}
-
+        if (isOpeningActive()) return;
+        if (isCaseStudyOpen()) return;
         if (isTransitioning) return;
 
         const touch =
@@ -654,12 +676,18 @@ const fusionCaseStudyViewer =
   function initButtons() {
     prevButton?.addEventListener(
       "click",
-      previousSlide,
+      () => {
+        if (isOpeningActive()) return;
+        previousSlide();
+      },
     );
 
     nextButton?.addEventListener(
       "click",
-      nextSlide,
+      () => {
+        if (isOpeningActive()) return;
+        nextSlide();
+      },
     );
   }
 
@@ -1201,6 +1229,28 @@ function initFusionCaseStudy() {
 }
 
   /* =========================================================
+     TRANSITION WATCHDOG
+
+     Protects against a transition getting stuck "in progress"
+     if the tab is backgrounded, the machine sleeps, or an
+     exception occurs mid-transition. Without this, a stuck
+     isTransitioning flag silently disables all navigation.
+  ========================================================= */
+
+  function initTransitionWatchdog() {
+    setInterval(() => {
+      if (
+        isTransitioning &&
+        Date.now() - transitionStartedAt >
+          TRANSITION_DURATION + 500
+      ) {
+        isTransitioning = false;
+        setSlideState();
+      }
+    }, 1000);
+  }
+
+  /* =========================================================
      INIT
   ========================================================= */
 
@@ -1231,6 +1281,7 @@ function initFusionCaseStudy() {
     initKaraokeCaseStudy();
     initGymBroCaseStudy();
     initFusionCaseStudy();
+    initTransitionWatchdog();
     updateYear();
   }
 

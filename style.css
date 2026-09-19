@@ -1,6 +1,23 @@
 /* =========================================================
    FONT FACE
 ========================================================= */
+/* =========================================================
+   NUMERIC VALUES ONLY
+   Hot Grill is a demo cut that watermarks every glyph with
+   "DEMO". Split the Experience value into <span class="num">
+   so only the digits switch to Space Grotesk, while the
+   word "years" and the Projects value keep Hot Grill.
+========================================================= */
+
+.info-card strong .num,
+.facts-grid .info-card:nth-child(4) strong {
+  font-family: var(--sans);
+  color: var(--ink);
+  font-weight: 900;
+  font-size: 30px;
+  letter-spacing: -0.01em;
+}
+
 i, em, cite, address, dfn, var {
   font-style: normal;
 }

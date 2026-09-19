@@ -1,7 +1,13 @@
 /* =========================================================
    FONT FACE
 ========================================================= */
+i, em, cite, address, dfn, var {
+  font-style: normal;
+}
 
+* {
+  font-synthesis: none;
+}
 @font-face {
   font-family: 'Hot Grill';
   src: url('assets/fonts/hot-grill-demo.ttf') format('truetype');
@@ -41,10 +47,10 @@
   --rule-on-paper: rgba(10, 2, 4, 0.16);
   --rule-on-ink: rgba(253, 251, 247, 0.16);
 
-  --display: "Hot Grill", "Newsreader", serif;
-  --serif: "Newsreader", serif;
-  --sans: "Archivo", sans-serif;
-  --data: "Fragment Mono", monospace;
+--display: "Hot Grill", "Space Grotesk", sans-serif;
+--serif: "Fraunces", serif;
+--sans: "Space Grotesk", sans-serif;
+--data: "Fragment Mono", monospace;
 
   --padding: clamp(22px, 4vw, 64px);
 
@@ -539,7 +545,6 @@ body.nav-dark .nav-menu span {
   color: var(--accent);
 
   font-family: var(--serif);
-  font-style: italic;
   font-size: 17px;
   font-weight: 400;
 
@@ -577,7 +582,6 @@ h2 span {
   margin: 40px auto 0;
 
   font-family: var(--serif);
-  font-style: italic;
 
   font-size: clamp(1.15rem, 1.7vw, 1.6rem);
 
@@ -642,7 +646,6 @@ h2 span {
   margin-top: 46px;
 
   font-family: var(--serif);
-  font-style: italic;
 
   font-size: clamp(1.05rem, 1.5vw, 1.4rem);
 
@@ -1279,7 +1282,6 @@ h2 span {
   margin-top: 26px;
 
   font-family: var(--serif);
-  font-style: italic;
 
   font-size: clamp(1.05rem, 1.5vw, 1.35rem);
 
@@ -1320,7 +1322,6 @@ h2 span {
   margin-top: 42px;
 
   font-family: var(--serif);
-  font-style: italic;
 
   font-size: 1.15rem;
 
